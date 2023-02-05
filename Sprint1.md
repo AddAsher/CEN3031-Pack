@@ -3,3 +3,5 @@ As a high school student interested in coming to UF, I want to be able to see al
 As a club president, I want a platform that could reach new potential members to bolster our number of members
 
 As a active member of multiple clubs, I want an app  that allows me to see and keep track of all events the clubs I am part of host, because it is difficult to keep with all of them on my own
+
+As an incoming freshman student, I want to discover new clubs and student organizations to feel more integrated.
