@@ -13,3 +13,4 @@ User Stories
 * As a student interested in club leadership, I want to be able to see which clubs have roles open so that I can become involved in a leadership position 
 * As a member of a minority community, I want to find groups and clubs with people who share my experiences so that I may be able to form genuine and life long connections
 * As a student looking to join new clubs, I want to be able to see what types of events are being held by clubs at UF to see if they are of interest to me
+* As a student seeking an internship, I want to be able to find clubs that enable me to create new connections so that I have a better chance at landing an internship.
