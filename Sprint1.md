@@ -14,3 +14,5 @@ User Stories
 * As a member of a minority community, I want to find groups and clubs with people who share my experiences so that I may be able to form genuine and life long connections
 * As a student looking to join new clubs, I want to be able to see what types of events are being held by clubs at UF to see if they are of interest to me
 * As a student seeking an internship, I want to be able to find clubs that enable me to create new connections so that I have a better chance at landing an internship.
+* As a Club Rush organizer, I want to be able to see how many active clubs are present within UF so that I can know how much space must be reserved for various booths
+* As the leader of a club, I want to ensure that anyone interested in attending any of the club's events can easily discern its location so that no one is deterred from showing up.
