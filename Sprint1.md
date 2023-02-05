@@ -12,3 +12,4 @@ User Stories
 * As a Club Rush organizer, I want to be able to see how many active clubs are present within UF so that I can know how much space must be reserved for various booths.
 * As the leader of a club, I want to ensure that anyone interested in attending any of the club's events can easily discern its location so that no one is deterred from showing up.
 * As a freshman new to UF's campus, I want to be able to conveniently locate places where clubs that peak my interest decide to hold events.
+* As an international student seeking social opprotunities, I want to be able to see which events have other students in the same situation as me so that I can make more friends here.
