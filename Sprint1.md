@@ -13,7 +13,17 @@
 * As the leader of a club, I want to ensure that anyone interested in attending any of the club's events can easily discern its location so that no one is deterred from showing up.
 * As a freshman new to UF's campus, I want to be able to conveniently locate places where clubs that peak my interest decide to hold events.
 * As an international student seeking social opprotunities, I want to be able to see which events have other students in the same situation as me so that I can make more friends here.
+* As a parent to an incoming student, I'd like to help my child in finding opprotunities that interest them at UF.
 
 ## What issues your team planned to address
+* Come to an agreement on the design of the front-end portion for Pack.
+* Create a basic back-end framework to build off of .
+* Find a method to import a large amount of data using GO.
+* Determine which data structure would be the best fit for this particular project.
 ## Which ones were successfully completed
+* We decided what the design would look like and how the back-end would function in tandem with this design
+* We developed a basic idea for how the back-end would work
 ## Which ones didn't and why?
+* We didnt implement an import plan for the clubs and thats the back-ends current main hurdle. We'll likely implement an intial database with a CSV that you can end to through the website.
+* Still tentative on a data structure, but a vector of structs seems to be the way forward.
+
