@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 //to test use test@ufl.edu and test
 
@@ -29,7 +32,7 @@ func main() {
 	var email string
 	for {
 		fmt.Scanln(&email)
-		if email == "test@ufl.edu" {
+		if strings.Contains(email, "@ufl.edu") {
 			break
 
 		} else {
@@ -39,9 +42,9 @@ func main() {
 	}
 	fmt.Println("Password:")
 	var pass string
-	fmt.Scanln(&pass)
 	for {
-		if pass == "test" {
+		fmt.Scanln(&pass)
+		if pass == email[1:4] {
 			break
 
 		} else {
