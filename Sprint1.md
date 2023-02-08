@@ -21,8 +21,9 @@
 * Find a method to import a large amount of data using GO.
 * Determine which data structure would be the best fit for this particular project.
 ## Which ones were successfully completed
-* We decided what the design would look like and how the back-end would function in tandem with this design
-* We developed a basic idea for how the back-end would work
+* We decided what the design would look like and how the back-end would function in tandem with this design.
+* We developed a basic idea for how the back-end would work.
+* Implemented a login so that Pack is currently only accessible to UF students.
 ## Which ones didn't and why?
 * We didnt implement an import plan for the clubs and thats the back-ends current main hurdle. We'll likely implement an intial database with a CSV that you can end to through the website.
 * Still tentative on a data structure, but a vector of structs seems to be the way forward.
