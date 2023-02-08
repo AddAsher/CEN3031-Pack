@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"unicode"
 )
 
 //to test use test@ufl.edu and test
@@ -28,16 +29,18 @@ func main() {
 
 	fmt.Println("Welcome to Pack!")
 	fmt.Println("Please Enter your email and password") //just make sure email has ufl, later tho
-	fmt.Println("Email:")
+	fmt.Print("Email:")
 	var email string
 	for {
 		fmt.Scanln(&email)
-		if strings.Contains(email, "@ufl.edu") {
+		if !unicode.IsLetter(rune(email[0])) {
+			fmt.Println("Invalid Email!")
+			fmt.Print("Email:")
+		} else if strings.Contains(email, "@ufl.edu") {
 			break
-
 		} else {
 			fmt.Println("Email not found!")
-			fmt.Println("Email:")
+			fmt.Print("Email:")
 		}
 	}
 	fmt.Println("Password:")
