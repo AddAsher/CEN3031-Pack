@@ -5,31 +5,23 @@ import "fmt"
 //to test use test@ufl.edu and test
 
 type Club struct { //We'll use this when we have a CSV, for now we can just use println to show how it would function.
-	 name string 
-	 description string
+	name        string
+	description string
 }
- //Club clubs := []Club{}
+
+//Club clubs := []Club{}
 
 func main() {
-//club1 := Club{
-//	name:  "360HM", description: "The purpose of the 360BHM is to this series seeks to educate, enhance, and entertain the university and Gainesville communities by reflecting on the contributions that Black Americans have made. It is our goal to advocate exposure of refined enrichment inspired by the heritage and legacy of universal Black culture."}
+	//club1 := Club{
+	//	name:  "360HM", description: "The purpose of the 360BHM is to this series seeks to educate, enhance, and entertain the university and Gainesville communities by reflecting on the contributions that Black Americans have made. It is our goal to advocate exposure of refined enrichment inspired by the heritage and legacy of universal Black culture."}
 
+	//clubVector = append(clubs, club1)
 
+	//for i := 0; i < len(clubVector{}); i++ {
+	//	fmt.Println(clubVector[i].name);
+	//}
 
-
-
-//clubVector = append(clubs, club1)
-
-//for i := 0; i < len(clubVector{}); i++ {
-//	fmt.Println(clubVector[i].name);
-//}
-
-//we put the csv stuff here but we need that data to import
-
-
-
-
-
+	//we put the csv stuff here but we need that data to import
 
 	fmt.Println("Welcome to Pack!")
 	fmt.Println("Please Enter your email and password") //just make sure email has ufl, later tho
@@ -60,11 +52,11 @@ func main() {
 	}
 	var menuDone bool = false
 	var subMenu bool = false
-	
+
 	for !menuDone {
 		fmt.Println("Please choice an option.")
 		fmt.Println("1. View Club Hostings")
-		fmt.Println("2. Host a club")
+		fmt.Println("2. Request New Listing for Club")
 		fmt.Println("3. Quit")
 		fmt.Print("Enter your choice: ")
 		var input int
@@ -92,6 +84,11 @@ func main() {
 				case 1:
 					fmt.Println("The purpose of the 360BHM is to this series seeks to educate, enhance, and entertain the university and Gainesville communities by reflecting on the contributions that Black Americans have made. It is our goal to advocate exposure of refined enrichment inspired by the heritage and legacy of universal Black culture.")
 					break
+				case 2:
+					fmt.Println("The 3D Printing Club is established for the purpose of educating UF students on the world of 3D printing and how 3D printing and related skills can be used within their education, professionally, and leisurely. Additionally, projects will be set in place to address issues seen within the University of Florida, the local Gainesville area, and nationally.")
+					break
+				case 3:
+					fmt.Println("Our goal is to help serve the homeless population in Gainesville by providing weekly lunches!")
 					//meeting hours here but  we gotta get more info from clubs for that
 					//meeting location here too probably
 				case 9:
@@ -102,7 +99,14 @@ func main() {
 
 			//I think we just list a bunch of clubs here and then u can click for further info?
 		case 2:
-			fmt.Println("You selected option 2") //adds to the database of clubs prob just a vector
+			fmt.Println("Input your club's name") //adds to the database of clubs prob just a vector, need some sort of confirmation here
+			var clubName string
+			fmt.Scanln(&clubName)
+			fmt.Println("Tell us a little bit about your club") //has to run through our approval first so people cant just put random stuff
+			var clubDesc string
+			fmt.Scanln(&clubDesc)
+			break
+
 		case 3:
 			fmt.Println("Goodbye!")
 			menuDone = true
@@ -110,6 +114,7 @@ func main() {
 			return
 		default:
 			fmt.Println("Invalid choice")
+			break
 		}
 
 	}
