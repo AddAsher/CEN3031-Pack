@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strings"
 	"unicode"
 )
@@ -26,7 +28,7 @@ func main() {
 	//}
 
 	//we put the csv stuff here but we need that data to import
-
+	clubList := make(map[string]string)
 	fmt.Println("Welcome to Pack!")
 	fmt.Println("Please Enter your email and password") //just make sure email has ufl, later tho
 	fmt.Print("Email:")
@@ -43,7 +45,7 @@ func main() {
 			fmt.Print("Email:")
 		}
 	}
-	fmt.Println("Password:")
+	fmt.Print("Password:")
 	var pass string
 	for {
 		fmt.Scanln(&pass)
@@ -52,7 +54,7 @@ func main() {
 
 		} else {
 			fmt.Println("Password not valid")
-			fmt.Println("Password:")
+			fmt.Print("Password:")
 		}
 
 	}
@@ -60,7 +62,7 @@ func main() {
 	var subMenu bool = false
 
 	for !menuDone {
-		fmt.Println("Please choice an option.")
+		fmt.Println("Please choose an option.")
 		fmt.Println("1. View Club Hostings")
 		fmt.Println("2. Request New Listing for Club")
 		fmt.Println("3. Quit")
@@ -105,12 +107,20 @@ func main() {
 
 			//I think we just list a bunch of clubs here and then u can click for further info?
 		case 2:
+			scanner := bufio.NewScanner(os.Stdin)
 			fmt.Println("Input your club's name") //adds to the database of clubs prob just a vector, need some sort of confirmation here
 			var clubName string
-			fmt.Scanln(&clubName)
+			scanner.Scan()
+			clubName = scanner.Text()
+			//fmt.Scanln(&clubName)
+
 			fmt.Println("Tell us a little bit about your club") //has to run through our approval first so people cant just put random stuff
 			var clubDesc string
-			fmt.Scanln(&clubDesc)
+			//fmt.Scanln(&clubDesc)
+			scanner.Scan()
+			clubDesc = scanner.Text()
+			fmt.Println("Thank you! We will consider adding", clubName)
+			clubList[clubName] = clubDesc
 			break
 
 		case 3:
