@@ -26,5 +26,5 @@
 * Implemented a login so that Pack is currently only accessible to UF students.
 ## Which ones didn't and why?
 * We didnt implement an import plan for the clubs and thats the back-ends current main hurdle. We'll likely implement an intial database with a CSV that you can end to through the website.
-* Still tentative on a data structure, but a vector of structs seems to be the way forward.
+* Profile page and several other user interaction not implemented yet.
 
