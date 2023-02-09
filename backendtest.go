@@ -98,7 +98,7 @@ func main() {
 				case 3:
 					fmt.Println("Our goal is to help serve the homeless population in Gainesville by providing weekly lunches!")
 					//meeting hours here but  we gotta get more info from clubs for that
-					//meeting location here too probably
+					//meeting location here also
 				case 9:
 					subMenu = true
 					break
