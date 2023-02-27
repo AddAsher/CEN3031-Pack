@@ -3,9 +3,13 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
+	"net/http"
 	"os"
 	"strings"
 	"unicode"
+
+	"github.com/gorilla/mux"
 )
 
 //to test use test@ufl.edu and test
@@ -18,6 +22,17 @@ type Club struct { //We'll use this when we have a CSV, for now we can just use 
 //Club clubs := []Club{}
 
 func main() {
+
+	r := mux.NewRouter()
+
+	//API Endpoints
+	r.HandleFunc("/api/users", getUsers).Methods("GET")
+	r.HandleFunc("/api/users/{id}", getUser).Methods("GET")
+	r.HandleFunc("/api/users", createUser).Methods("POST")
+	r.HandleFunc("/api/users/{id}", updateUser).Methods("PUT")
+	r.HandleFunc("/api/users/{id}", deleteUser).Methods("DELETE")
+
+	log.Fatal(http.ListenAndServe(":8000", r))
 	//club1 := Club{
 	//	name:  "360HM", description: "The purpose of the 360BHM is to this series seeks to educate, enhance, and entertain the university and Gainesville communities by reflecting on the contributions that Black Americans have made. It is our goal to advocate exposure of refined enrichment inspired by the heritage and legacy of universal Black culture."}
 
@@ -134,5 +149,30 @@ func main() {
 		}
 
 	}
+
 }
 
+func getUsers(w http.ResponseWriter, r *http.Request) {
+	// Your code to get a list of users from your database or other data source
+	// Write the response back to the client
+}
+
+func getUser(w http.ResponseWriter, r *http.Request) {
+	// Your code to get a single user from your database or other data source
+	// Write the response back to the client
+}
+
+func createUser(w http.ResponseWriter, r *http.Request) {
+	// Your code to create a new user in your database or other data source
+	// Write the response back to the client
+}
+
+func updateUser(w http.ResponseWriter, r *http.Request) {
+	// Your code to update an existing user in your database or other data source
+	// Write the response back to the client
+}
+
+func deleteUser(w http.ResponseWriter, r *http.Request) {
+	// Your code to delete a user from your database or other data source
+	// Write the response back to the client
+}
