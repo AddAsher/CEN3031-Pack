@@ -32,7 +32,7 @@ func main() {
 	r.HandleFunc("/api/users/{id}", updateUser).Methods("PUT")
 	r.HandleFunc("/api/users/{id}", deleteUser).Methods("DELETE")
 
-	log.Fatal(http.ListenAndServe(":8000", r))
+	log.Fatal(http.ListenAndServe(":4200", r))
 	//club1 := Club{
 	//	name:  "360HM", description: "The purpose of the 360BHM is to this series seeks to educate, enhance, and entertain the university and Gainesville communities by reflecting on the contributions that Black Americans have made. It is our goal to advocate exposure of refined enrichment inspired by the heritage and legacy of universal Black culture."}
 
