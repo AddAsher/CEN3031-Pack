@@ -1,13 +1,18 @@
+import{slowCypressDown} from 'cypress-slow-down'
+
+slowCypressDown()
+
 describe('My First Test', () => {
   it('Gets, types and asserts', () => {
     cy.visit('http://localhost:4200')
-
+    
     cy.contains('PACK')
 
     // Get an input, type into it
-    cy.get('username').type('hello')
+    cy.get('#username').type('hello')
+    cy.get('#password').type('world')
 
-    //  Verify that the value has been updated
-    // cy.get('.action-email').should('have.value', 'fake@email.com')
+    // Click the button to save values
+    cy.get('#button').click()
   })
 })
