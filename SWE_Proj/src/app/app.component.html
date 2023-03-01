@@ -310,17 +310,38 @@
     <table>
       <tr>
         <td align="center">Username:</td>
-        <td align="center"><input type="text" name="first" /></td>
+        <td align="center"><input type="text" id="first" /></td>
         <td align="center"></td>
       </tr>
       <tr>
         <td align="right">Password:</td>
-        <td align="left"><input type="text" name="last" /></td>
+        <td align="left"><input type="password" id="last" /></td>
       </tr>
     </table>
     <h2>
-      <input type = "button">Login</button>
+      <button id = "button">Login</button>
     </h2>
   </form>
+  <!-- Creates script to save information entered in username and password textboxes -->
+  <script> 
+  let logins = [];
+  const saveLogin = (ev)=>{
+    ev.preventDefault();
+    let login = {
+      username: document.getElementById('first').value,
+      password: document.getElementById('last').value
+    }
+    if(login.username != "" && login.password != ""){
+      logins.push(login);
+    }
+    document.forms[0].reset();
+
+    //saving to local storage for test
+    localStorage.setItem('LoginList', JSON.stringify(logins));
+  }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('button').addEventListener('click',saveLogin);
+  });
+  </script>
   <section></section>
 </div>
