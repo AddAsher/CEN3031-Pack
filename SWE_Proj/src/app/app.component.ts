@@ -43,7 +43,7 @@ export class AuthService {
 
 
 export class AppComponent {
-  email: string = "admin";
+  email: string = "";
   password: string = "";
   username: string = "";
   title = 'PACK';
@@ -65,5 +65,6 @@ export class AppComponent {
   buttonPress()
   {
     alert("Login button clicked")
+    document.forms[0].reset();
   }
 }
