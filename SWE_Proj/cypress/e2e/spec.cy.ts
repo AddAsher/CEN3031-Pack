@@ -2,7 +2,7 @@ import{slowCypressDown} from 'cypress-slow-down'
 
 slowCypressDown()
 
-describe('My First Test', () => {
+describe('Cypress Test 1', () => {
   it('Gets, types and asserts', () => {
     cy.visit('http://localhost:4200')
     
