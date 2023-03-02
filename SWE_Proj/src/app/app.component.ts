@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'PACK';
+
+  buttonPress()
+  {
+    alert("Login Button Clicked")
+  }
 }
