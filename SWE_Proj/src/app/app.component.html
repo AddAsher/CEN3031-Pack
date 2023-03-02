@@ -327,8 +327,8 @@
   const saveLogin = (ev)=>{
     ev.preventDefault();
     let login = {
-      username: document.getElementById('first').value,
-      password: document.getElementById('last').value
+      username: document.getElementById('username').value,
+      password: document.getElementById('password').value
     }
     if(login.username != "" && login.password != ""){
       logins.push(login);
