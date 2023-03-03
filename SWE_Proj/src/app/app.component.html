@@ -308,7 +308,7 @@
     <table>
       <tr>
         <label for="username">Username:</label>
-        <td align="center"><input type="text" id="username" name="username" [(ngModel)]="username"></td>
+        <td align="center"><input type="username" id="username" name="username" [(ngModel)]="username"></td>
       </tr>
       <tr>
         <label for="password">Password:</label>
@@ -316,7 +316,7 @@
       </tr>
     </table>
     <h2>
-      <button type="submit" id="button">Login</button>
+      <button (click)="buttonPress()" type="submit" id="button">Login</button>
     </h2>
   </form>
   <!-- Creates script to save information entered in username and password textboxes -->

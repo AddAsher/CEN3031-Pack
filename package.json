@@ -11,5 +11,9 @@
   "license": "ISC",
   "devDependencies": {
     "cypress": "^12.7.0"
+  },
+  "dependencies": {
+    "@angular/core": "^15.2.1",
+    "@angular/forms": "^15.2.1"
   }
 }
