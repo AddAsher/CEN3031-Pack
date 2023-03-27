@@ -9,8 +9,8 @@ describe('Cypress Test 1', () => {
     cy.contains('PACK')
 
     // Get an input, type into it
-    cy.get('#username').type('hello')
-    cy.get('#password').type('world')
+    cy.get('#username').type('HelloWorld')
+    cy.get('#password').type('Password')
 
     // Click the button to save values
     cy.get('#button').click()

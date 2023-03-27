@@ -18,7 +18,7 @@ export interface User {
 
 export class AuthService {
 
-  private baseUrl = 'http://localhost:8080';
+  private baseUrl = 'http://localhost:4200';
 
   constructor(private http: HttpClient) { }
 
@@ -52,7 +52,7 @@ export class AppComponent {
   constructor(private http: HttpClient) { }
 
   onSubmit() {
-    this.http.post('http://localhost:8080/login', {
+    this.http.post('http://localhost:4200/login', {
       email: this.email,
       password: this.password
     }).subscribe((response) => {
@@ -61,8 +61,9 @@ export class AppComponent {
       console.log(error);
     });
   }
+
   buttonPress() {
-    document.forms[0].reset();
     alert("Login button clicked")
+    document.forms[0].reset();
   }
 }
