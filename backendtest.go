@@ -94,42 +94,6 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// func login(w http.ResponseWriter, r *http.Request) {
-// 	var user User
-
-// 	// Parse the JSON request body
-// 	err := json.NewDecoder(r.Body).Decode(&user)
-// 	if err != nil {
-// 		http.Error(w, err.Error(), http.StatusBadRequest)
-// 		return
-// 	}
-
-// 	// Do some logic to verify the user's credentials
-// 	// ...
-
-// 	// Send back a response
-// 	w.WriteHeader(http.StatusOK)
-// 	w.Header().Set("Content-Type", "application/json")
-// 	json.NewEncoder(w).Encode(user)
-// }
-
-// func helloWorld(w http.ResponseWriter, r *http.Request) {
-// 	var data = struct {
-// 		Title string `json:"title"`
-// 	}{
-// 		Title: "Golang + Angular Starter Kit",
-// 	}
-
-// 	jsonBytes, err := utils.StructToJSON(data)
-// 	if err != nil {
-// 		fmt.Print(err)
-// 	}
-
-// 	w.Header().Set("Content-Type", "application/json")
-// 	w.Write(jsonBytes)
-// 	return
-// }
-
 //r.HandleFunc("/api/login", handleLogin).Methods("POST")
 //http.ListenAndServe(":8080", r)
 //API Endpoints
@@ -256,20 +220,4 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 
 // 	}
 
-// }
-
-// func handleLogin(w http.ResponseWriter, r *http.Request) {
-// 	var req LoginRequest
-// 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-// 		http.Error(w, "Invalid request body", http.StatusBadRequest)
-// 		return
-// 	}
-
-// 	// TODO: Validate user's credentials
-
-// 	if true {
-// 		w.WriteHeader(http.StatusOK)
-// 	} else {
-// 		http.Error(w, "Invalid username or password", http.StatusUnauthorized)
-// 	}
 // }
