@@ -52,10 +52,10 @@ func main() {
 	//http.ListenAndServe(":8080", handler)
 
 	//clubList := make(map[string]string)
-	clubList := make(map[int]Club)
-	newClub := Club{name: "test", description: "this is a club"}
-	clubList[1] = newClub
-	clubList[2] = newClub
+	clubList := make(map[string]string)
+	loginList := make(map[string]string)
+	clubList["poopyclub"] = "poop"
+	loginList["test"] = "test"
 	fmt.Println("Welcome to Pack!")
 	fmt.Println("Please Enter your email and password") //just make sure email has ufl, later tho
 	fmt.Print("Email:")
@@ -103,38 +103,49 @@ func main() {
 			subMenu = false
 
 			for !subMenu {
+				var i int =1;
 				if len(clubList) == 0 {
 					fmt.Println("No clubs avaliable")
 				} else {
-					for key, value := range clubList {
-						
-						fmt.Print(key)
+					for key := range clubList {
+						fmt.Print(i)
 						fmt.Print(". ")
-						fmt.Println(value.name)
+						fmt.Println(key)
+						i++
 
 					}
 				}
-				fmt.Println("Which club would you like to know more about?")
+				fmt.Println("Please enter the name of the club you'd like to know more about.")
 				fmt.Println("-1 to return to menu")
-				var menuChoice int
+				var menuChoice string
 				fmt.Scanln(&menuChoice)
-				if menuChoice == -1 {
+				if menuChoice == "-1" {
 					subMenu = true
 					break
 				}
-				//switch menuChoice {
-				fmt.Println(clubList[menuChoice].description)
-				//case 1:
-				//fmt.Println("The purpose of the 360BHM is to this series seeks to educate, enhance, and entertain the university and Gainesville communities by reflecting on the contributions that Black Americans have made. It is our goal to advocate exposure of refined enrichment inspired by the heritage and legacy of universal Black culture.")
-				//break
-				//case 2:
-				//	fmt.Println("The 3D Printing Club is established for the purpose of educating UF students on the world of 3D printing and how 3D printing and related skills can be used within their education, professionally, and leisurely. Additionally, projects will be set in place to address issues seen within the University of Florida, the local Gainesville area, and nationally.")
-				//	break
-				//case 3:
-				//	fmt.Println("Our goal is to help serve the homeless population in Gainesville by providing weekly lunches!")
-				//meeting hours here but  we gotta get more info from clubs for that
-				//meeting location here also
-				//case 9:
+				if value, found := clubList[menuChoice]; found {
+				fmt.Println(value)
+			} else {
+				fmt.Println("invalid club!")
+			}
+			fmt.Println("Would you like to view more clubs? Input Yes or No") 
+			var inputCheck bool = false
+			for !inputCheck {
+			fmt.Scanln(&menuChoice)
+			
+			if(menuChoice == "Yes"){
+				inputCheck = true
+				continue
+				
+			}
+			if(menuChoice == "No"){
+				subMenu = true;
+				inputCheck = true
+			} else {
+				fmt.Println("Invalid choice, input Yes or No")
+			}
+		}
+			
 
 			}
 
@@ -144,16 +155,15 @@ func main() {
 			var clubName string
 			scanner.Scan()
 			clubName = scanner.Text()
-			fmt.Scanln(&clubName)
+			//fmt.Scanln(&clubName)
 
 			fmt.Println("Tell us a little bit about your club") //has to run through our approval first so people cant just put random stuff
 			var clubDesc string
-			fmt.Scanln(&clubDesc)
+			//fmt.Scanln(&clubDesc)
 			scanner.Scan()
 			clubDesc = scanner.Text()
 			fmt.Println("Thank you! We will consider adding", clubName) //for the sake of this we're just adding it
-			newClub := Club{name: clubName, description: clubDesc}
-			clubList[len(clubList)] = newClub
+			clubList[clubName] = clubDesc
 			break
 
 		case 3:
