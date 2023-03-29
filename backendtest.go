@@ -19,10 +19,6 @@ import (
 )
 
 // to test use test@ufl.edu and test
-type Credentials struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
-}
 
 type Claims struct {
 	Username string `json:"username"`
