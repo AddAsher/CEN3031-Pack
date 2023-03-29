@@ -1,13 +1,60 @@
+/* Style for toolbar */
+.toolbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #1976d2;
+    color: white;
+}
+
+.toolbar-container img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.toolbar-container h1 {
+    font-size: 2rem;
+    font-weight: normal;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style header */
+.header-container {
+    font-size: 4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #1976d2;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Style for the login box */
+.login-container {
+    /*background-image: url("path/to/your/image.jpg");*/
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.8;
+}
+
+/* Style for login form */
 form {
     max-width: 500px;
     margin: auto;
     padding: 20px;
     border: 1px solid #ccc;
     background-color: #f2f2f2;
-  }
+}
   
-  /* Style for the input fields */
-  input[type=text], input[type=password] {
+/* Style for the input fields */
+input[type=text], input[type=password] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -15,59 +62,23 @@ form {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-  }
-  
-  /* Style for the login button */
-  input[type=submit] {
-    background-color: #4CAF50;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+}
+
+/* Style for the login button */
+input[type=submit] {
+    background-color: #1976d2;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  /* Change the color of the button on hover */
-  input[type=submit]:hover {
-    background-color: #45a049;
-  }
-
-
-/*
-Need to fix issue with removing these styles
-
-Currently causes formatting issues
-*/
-
-.toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
+    font-size: 1rem;
 }
-.toolbar img {
-    margin: 0 16px;
-}
-.toolbar #twitter-logo {
-    height: 40px;
-    margin: 0 8px;
-}
-.toolbar #youtube-logo {
-    height: 40px;
-    margin: 0 16px;
-}
-.content {
-    display: flex;
-    margin: 82px auto 32px;
-    padding: 0 16px;
-    max-width: 960px;
-    flex-direction: column;
-    align-items: center;
+
+/* Change the color of the button on hover */
+input[type=submit]:hover {
+    background-color: #3399CC;
 }
