@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { AuthService } from './auth.service';
 
 export interface User {
   id: number;
@@ -16,54 +16,42 @@ export interface User {
 
 
 
-export class AuthService {
-
-  private baseUrl = 'http://localhost:8080';
-
-  constructor(private http: HttpClient) { }
-
-  login(username: string, password: string) {
-    const url = `${this.baseUrl}/login`;
-    const body = { username, password };
-    return this.http.post<User>(url, body);
-  }
-
-}
 
 @Component({
   selector: 'app-root',
   template: `
   <ul>
-      <li *ngFor="let user of users">{{ user.name }}</li>
+  <li *ngFor="let user of users">{{ user.name }}</li>
   </ul>
-`,
+  `,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 
 
 export class AppComponent {
-  email: string = "";
   password: string = "";
   username: string = "";
   title = 'PACK';
   users: any[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private authService: AuthService) { }
 
   onSubmit() {
-    this.http.post('http://localhost:8080/login', {
-      email: this.email,
-      password: this.password
-    }).subscribe((response) => {
-      console.log("Login request recieved");
-    }, (error) => {
-      console.log(error);
-    });
+    console.log("Submitting login request:", this.username, this.password);
+    this.authService.login(this.username, this.password).subscribe(
+      (response) => {
+        console.log("Login request received on Front end");
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   buttonPress() {
     alert("Login button clicked")
+    this.onSubmit();
     document.forms[0].reset();
   }
 }
