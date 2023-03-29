@@ -118,7 +118,9 @@ func main() {
 				fmt.Println("Please enter the name of the club you'd like to know more about.")
 				fmt.Println("-1 to return to menu")
 				var menuChoice string
-				fmt.Scanln(&menuChoice)
+				scanner := bufio.NewScanner(os.Stdin)
+				scanner.Scan()
+				menuChoice = scanner.Text()		
 				if menuChoice == "-1" {
 					subMenu = true
 					break
@@ -155,13 +157,11 @@ func main() {
 			var clubName string
 			scanner.Scan()
 			clubName = scanner.Text()
-			//fmt.Scanln(&clubName)
-
 			fmt.Println("Tell us a little bit about your club") //has to run through our approval first so people cant just put random stuff
 			var clubDesc string
-			//fmt.Scanln(&clubDesc)
 			scanner.Scan()
 			clubDesc = scanner.Text()
+			
 			fmt.Println("Thank you! We will consider adding", clubName) //for the sake of this we're just adding it
 			clubList[clubName] = clubDesc
 			break
