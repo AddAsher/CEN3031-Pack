@@ -7,16 +7,15 @@ import (
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
-	//"github.com/rs/cors"
+	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 
-	"bufio"
 	"fmt"
-
-	//"log"
-	"os"
-	"strings"
-	"unicode"
-	//	"github.com/gorilla/mux"
+	// "bufio"
+	// "os"
+	// "unicode"
+	// "strings"
+	"log"
 )
 
 // to test use test@ufl.edu and test
@@ -31,25 +30,35 @@ type Claims struct {
 	ExpiresAt int64 `json:"exp"`
 }
 
-type Club struct { //We'll use this when we have a CSV, for now we can just use println to show how it would function.
-	name        string
-	description string
+// type Club struct { //We'll use this when we have a CSV, for now we can just use println to show how it would function.
+// 	name        string
+// 	description string
+// }
+
+// Club clubs := []Club{}
+type User struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
 }
 
-//Club clubs := []Club{}
+var users = make(map[string]string)
 
 func main() {
-	// r := mux.NewRouter()
-	// r.HandleFunc("/login", loginHandler).Methods("POST")
-
-	// c := cors.New(cors.Options{
-	// 	AllowedOrigins:   []string{"http://localhost:4200"},
-	// 	AllowCredentials: true,
-	// 	AllowedHeaders:   []string{"Authorization", "Content-Type"},
-	// })
-	// handler := c.Handler(r)
-	//handler := cors.Default().Handler(r)
-	//http.ListenAndServe(":8080", handler)
+	users["Admin"] = "QWERTY"
+	users["Beta"] = "Charlie"
+	users["Delta"] = "Echo"
+	r := mux.NewRouter()
+	r.HandleFunc("/login", loginHandler).Methods("POST")
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{"http://localhost:4200"},
+		AllowCredentials: true,
+		AllowedHeaders:   []string{"Authorization", "Content-Type"},
+	})
+	handler := c.Handler(r)
+	err := http.ListenAndServe(":8080", handler)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	//clubList := make(map[string]string)
 	clubList := make(map[string]string)
@@ -79,28 +88,28 @@ func main() {
 		if pass == email[1:4] {
 			break
 
-		} else {
-			fmt.Println("Password not valid")
-			fmt.Print("Password:")
-		}
+	// 	} else {
+	// 		fmt.Println("Password not valid")
+	// 		fmt.Print("Password:")
+	// 	}
 
-	}
-	var menuDone bool = false
-	var subMenu bool = false
+	// }
+	// var menuDone bool = false
+	// var subMenu bool = false
 
-	for !menuDone {
-		fmt.Println("Please choose an option.")
-		fmt.Println("1. View Club Hostings")
-		fmt.Println("2. Request New Listing for Club")
-		fmt.Println("3. Quit")
-		fmt.Print("Enter your choice: ")
-		var input int
-		fmt.Scanln(&input)
+	// for !menuDone {
+	// 	fmt.Println("Please choose an option.")
+	// 	fmt.Println("1. View Club Hostings")
+	// 	fmt.Println("2. Request New Listing for Club")
+	// 	fmt.Println("3. Quit")
+	// 	fmt.Print("Enter your choice: ")
+	// 	var input int
+	// 	fmt.Scanln(&input)
 
-		switch input {
+	// 	switch input {
 
-		case 1:
-			subMenu = false
+	// 	case 1:
+	// 		subMenu = false
 
 			for !subMenu {
 				var i int =1;
@@ -149,7 +158,29 @@ func main() {
 		}
 			
 
-			}
+	// 				}
+	// 			}
+	// 			fmt.Println("Which club would you like to know more about?")
+	// 			fmt.Println("-1 to return to menu")
+	// 			var menuChoice int
+	// 			fmt.Scanln(&menuChoice)
+	// 			if menuChoice == -1 {
+	// 				subMenu = true
+	// 				break
+	// 			}
+	// 			//switch menuChoice {
+	// 			fmt.Println(clubList[menuChoice].description)
+	//case 1:
+	//fmt.Println("The purpose of the 360BHM is to this series seeks to educate, enhance, and entertain the university and Gainesville communities by reflecting on the contributions that Black Americans have made. It is our goal to advocate exposure of refined enrichment inspired by the heritage and legacy of universal Black culture.")
+	//break
+	//case 2:
+	//	fmt.Println("The 3D Printing Club is established for the purpose of educating UF students on the world of 3D printing and how 3D printing and related skills can be used within their education, professionally, and leisurely. Additionally, projects will be set in place to address issues seen within the University of Florida, the local Gainesville area, and nationally.")
+	//	break
+	//case 3:
+	//	fmt.Println("Our goal is to help serve the homeless population in Gainesville by providing weekly lunches!")
+	//meeting hours here but  we gotta get more info from clubs for that
+	//meeting location here also
+	//case 9:
 
 		case 2:
 			scanner := bufio.NewScanner(os.Stdin)
@@ -166,19 +197,29 @@ func main() {
 			clubList[clubName] = clubDesc
 			break
 
-		case 3:
-			fmt.Println("Goodbye!")
-			menuDone = true
-			subMenu = true
-			return
-		default:
-			fmt.Println("Invalid choice")
-			break
-		}
+	// 		fmt.Println("Tell us a little bit about your club") //has to run through our approval first so people cant just put random stuff
+	// 		var clubDesc string
+	// 		fmt.Scanln(&clubDesc)
+	// 		scanner.Scan()
+	// 		clubDesc = scanner.Text()
+	// 		fmt.Println("Thank you! We will consider adding", clubName) //for the sake of this we're just adding it
+	// 		newClub := Club{name: clubName, description: clubDesc}
+	// 		clubList[len(clubList)] = newClub
+	// 		break
 
-		//I think we just list a bunch of clubs here and then u can click for further info?
+	// 	case 3:
+	// 		fmt.Println("Goodbye!")
+	// 		menuDone = true
+	// 		subMenu = true
+	// 		return
+	// 	default:
+	// 		fmt.Println("Invalid choice")
+	// 		break
+	// 	}
 
-	}
+	// 	//I think we just list a bunch of clubs here and then u can click for further info?
+
+	// }
 
 }
 
@@ -192,37 +233,51 @@ func (c *Claims) Valid() error {
 func loginHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Received login request")
 	// Parse request body
-	var creds Credentials
-	err := json.NewDecoder(r.Body).Decode(&creds)
+	decoder := json.NewDecoder(r.Body)
+	var newUser User
+	err := decoder.Decode(&newUser)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+	defer r.Body.Close()
 
-	// Authenticate user
-	if creds.Username == "admin" && creds.Password == "password" {
-		// Generate JWT token
-		claims := &Claims{
-			Username: creds.Username,
-		}
-		token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-		tokenString, err := token.SignedString([]byte("secret"))
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
+	var validUser bool = false
+	for !validUser {
+		if newUser.Username == "" {
+			http.Error(w, "username is required", http.StatusBadRequest)
+			return
+		} else if _, found := users[newUser.Username]; found {
+			fmt.Println(newUser.Username)
+		} else {
+			http.Error(w, "invalid username", http.StatusBadRequest)
 			return
 		}
 
-		// Return token to client
-		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(map[string]string{
-			"token": tokenString,
-		})
-	} else {
-		fmt.Println("Received login request")
-		//http.Error(w, "Invalid credentials", http.StatusUnauthorized)
-		return
+		if newUser.Password == "" {
+			http.Error(w, "password is required", http.StatusBadRequest)
+			return
+		} else if newUser.Password == users[newUser.Username] {
+			fmt.Println(newUser.Password)
+			validUser = true
+		} else {
+			http.Error(w, "invalid password", http.StatusBadRequest)
+			return
+		}
 	}
 
+	users[newUser.Username] = newUser.Password
+
+	UsersJSON, _ := json.Marshal(newUser)
+	//response, err := json.Marshal(newUser)
+	// if err != nil {
+	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
+	// 	return
+	// }
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	w.Write(UsersJSON)
 }
 
 // func login(w http.ResponseWriter, r *http.Request) {
