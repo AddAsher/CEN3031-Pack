@@ -24,12 +24,12 @@ export interface User {
   <li *ngFor="let user of users">{{ user.name }}</li>
   </ul>
   `,
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './login.component.html', 
+  styleUrls: ['./login.component.css'] //bug occurs here
 })
 
 
-export class AppComponent {
+export class LoginComponent {
   password: string = "";
   username: string = "";
   title = 'PACK';

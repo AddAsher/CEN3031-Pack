@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from './auth.service';
+import { AuthService } from './Login/auth.service';
+import { appRoutingModule } from './app.routing';
 
-import { AppComponent } from './app.component';
-
+import { LoginComponent } from './Login'; //login page
+import { HomeComponent } from './Home'; //home page 
+import { RegistrationComponent } from './Registration'; //registration page
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, HttpClientModule, FormsModule],
+  declarations: [LoginComponent,HomeComponent,RegistrationComponent],
+  imports: [BrowserModule, HttpClientModule, FormsModule, appRoutingModule],
   providers: [AuthService],
-  bootstrap: [AppComponent],
+  bootstrap: [LoginComponent],
 })
 export class AppModule { }
