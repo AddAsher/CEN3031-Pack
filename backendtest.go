@@ -208,8 +208,8 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		} else if _, found := users[newUser.Username]; found {
 			fmt.Println(newUser.Username)
 		} else {
-			fmt.Println("Invalid Username")
-			continue
+			http.Error(w, "invalid username", http.StatusBadRequest)
+			return
 		}
 
 		if newUser.Password == "" {
@@ -219,7 +219,8 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(newUser.Password)
 			validUser = true
 		} else {
-			fmt.Println("Invalid Password")
+			http.Error(w, "invalid password", http.StatusBadRequest)
+			return
 		}
 	}
 
