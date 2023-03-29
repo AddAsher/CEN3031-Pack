@@ -37,14 +37,17 @@ type User struct {
 	Password string `json:"password"`
 }
 
+var clubList = make(map[string]string)
 var users = make(map[string]string)
 
 func main() {
 	users["Admin"] = "QWERTY"
 	users["Beta"] = "Charlie"
 	users["Delta"] = "Echo"
+	clubList["fooclub"] = "foo"
 	r := mux.NewRouter()
 	r.HandleFunc("/login", loginHandler).Methods("POST")
+	r.HandleFunc("/login", getClubs).Methods("GET")
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"http://localhost:4200"},
 		AllowCredentials: true,
@@ -59,7 +62,6 @@ func main() {
 	//clubList := make(map[string]string)
 	clubList := make(map[string]string)
 	loginList := make(map[string]string)
-	clubList["poopyclub"] = "poop"
 	loginList["test"] = "test"
 	fmt.Println("Welcome to Pack!")
 	fmt.Println("Please Enter your email and password") //just make sure email has ufl, later tho
@@ -192,6 +194,16 @@ func (c *Claims) Valid() error {
 		return errors.New("token has expired")
 	}
 	return nil
+}
+
+func getClubs(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "applications/json")
+	ClubsJSON, err := json.Marshal(clubList)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	w.Write(ClubsJSON)
 }
 
 func loginHandler(w http.ResponseWriter, r *http.Request) {
