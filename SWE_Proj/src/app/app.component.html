@@ -192,7 +192,7 @@
   }
 
   .terminal pre {
-    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
     color: white;
     padding: 0 1rem 1rem;
     margin: 0;
@@ -236,16 +236,16 @@
     align-items: center;
     font-size: 12px;
     padding: 3px 10px;
-    border: 1px solid rgba(27,31,35,.2);
+    border: 1px solid rgba(27, 31, 35, .2);
     border-radius: 3px;
-    background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%);
+    background-image: linear-gradient(-180deg, #fafbfc, #eff3f6 90%);
     margin-left: 4px;
     font-weight: 600;
   }
 
   .github-star-badge:hover {
-    background-image: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);
-    border-color: rgba(27,31,35,.35);
+    background-image: linear-gradient(-180deg, #f0f3f6, #e6ebf1 90%);
+    border-color: rgba(27, 31, 35, .35);
     background-position: -.5em;
   }
 
@@ -265,7 +265,8 @@
 
   /* Responsive Styles */
   @media screen and (max-width: 767px) {
-    .card-container > *:not(.circle-link) ,
+
+    .card-container>*:not(.circle-link),
     .terminal {
       width: 100%;
     }
@@ -295,10 +296,7 @@
 
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
-  <img
-    width = 40
-    src="assets/box_logo.jpg"
-  />
+  <img width=40 src="assets/box_logo.jpg" />
   <span>Welcome to {{title}}</span>
 </div>
 
@@ -306,42 +304,44 @@
   <h1>
     {{title}}
   </h1>
-  <form>
+  <form (ngSubmit)="onSubmit()">
     <table>
       <tr>
-        <td align="center">Username:</td>
-        <td align="center"><input type="text" id="first" /></td>
-        <td align="center"></td>
+        <label for="username">Username:</label>
+        <td align="center"><input type="username" id="username" name="username" [(ngModel)]="username"></td>
       </tr>
       <tr>
-        <td align="right">Password:</td>
-        <td align="left"><input type="password" id="last" /></td>
+        <label for="password">Password:</label>
+        <td align="center"><input type="password" id="password" name="password" [(ngModel)]="password"></td>
       </tr>
     </table>
     <h2>
-      <button id = "button">Login</button>
+      <button type="button" (click)="buttonPress()" id="button">Login</button>
     </h2>
   </form>
   <!-- Creates script to save information entered in username and password textboxes -->
-  <script> 
-  let logins = [];
-  const saveLogin = (ev)=>{
-    ev.preventDefault();
-    let login = {
-      username: document.getElementById('first').value,
-      password: document.getElementById('last').value
-    }
-    if(login.username != "" && login.password != ""){
-      logins.push(login);
-    }
-    document.forms[0].reset();
+  <script>
+    let logins = [];
+    const saveLogin = (ev) => {
+      ev.preventDefault();
+      let login = {
+        username: document.getElementById('first').value,
+        password: document.getElementById('last').value
+      }
+      if (login.username != "" && login.password != "") {
+        logins.push(login);
+      }
 
-    //saving to local storage for test
-    localStorage.setItem('LoginList', JSON.stringify(logins));
-  }
-  document.addEventListener('DOMContentLoaded', ()=>{
-    document.getElementById('button').addEventListener('click',saveLogin);
-  });
+      //trying to post user data
+
+      document.forms[0].reset();
+
+      //saving to local storage for test
+      localStorage.setItem('LoginList', JSON.stringify(logins));
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('button').addEventListener('click', saveLogin);
+    });
   </script>
   <section></section>
 </div>
