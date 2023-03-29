@@ -10,7 +10,7 @@ export interface User {
     providedIn: 'root'
 })
 export class AuthService {
-    private baseUrl = 'http://localhost:4200';
+    private baseUrl = 'http://localhost:8080';
 
     constructor(private http: HttpClient) { }
 
