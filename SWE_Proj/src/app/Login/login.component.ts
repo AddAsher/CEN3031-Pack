@@ -20,14 +20,13 @@ export interface User {
 @Component({
   selector: 'app-root',
   template: `
-  <ul>
-  <li *ngFor="let user of users">{{ user.name }}</li>
-  </ul>
-  `,
+  // <ul>
+  // <li *ngFor="let user of users">{{ user.name }}</li>
+  // </ul>
+  // `,
   templateUrl: './login.component.html', 
-  styleUrls: ['./login.component.css'] //bug occurs here
+  styleUrls: ['./login.component.css'] 
 })
-
 
 export class LoginComponent {
   password: string = "";
