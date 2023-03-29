@@ -57,32 +57,32 @@ func main() {
 	}
 
 	//clubList := make(map[string]string)
-	// clubList := make(map[int]Club)
-	// newClub := Club{name: "test", description: "this is a club"}
-	// clubList[1] = newClub
-	// clubList[2] = newClub
-	// fmt.Println("Welcome to Pack!")
-	// fmt.Println("Please Enter your email and password") //just make sure email has ufl, later tho
-	// fmt.Print("Email:")
-	// var email string
-	// for {
-	// 	fmt.Scanln(&email)
-	// 	if !unicode.IsLetter(rune(email[0])) {
-	// 		fmt.Println("Invalid Email!")
-	// 		fmt.Print("Email:")
-	// 	} else if strings.Contains(email, "@ufl.edu") {
-	// 		break
-	// 	} else {
-	// 		fmt.Println("Email not found!")
-	// 		fmt.Print("Email:")
-	// 	}
-	// }
-	// fmt.Print("Password:")
-	// var pass string
-	// for {
-	// 	fmt.Scanln(&pass)
-	// 	if pass == email[1:4] {
-	// 		break
+	clubList := make(map[string]string)
+	loginList := make(map[string]string)
+	clubList["poopyclub"] = "poop"
+	loginList["test"] = "test"
+	fmt.Println("Welcome to Pack!")
+	fmt.Println("Please Enter your email and password") //just make sure email has ufl, later tho
+	fmt.Print("Email:")
+	var email string
+	for {
+		fmt.Scanln(&email)
+		if !unicode.IsLetter(rune(email[0])) {
+			fmt.Println("Invalid Email!")
+			fmt.Print("Email:")
+		} else if strings.Contains(email, "@ufl.edu") {
+			break
+		} else {
+			fmt.Println("Email not found!")
+			fmt.Print("Email:")
+		}
+	}
+	fmt.Print("Password:")
+	var pass string
+	for {
+		fmt.Scanln(&pass)
+		if pass == email[1:4] {
+			break
 
 	// 	} else {
 	// 		fmt.Println("Password not valid")
@@ -107,15 +107,52 @@ func main() {
 	// 	case 1:
 	// 		subMenu = false
 
-	// 		for !subMenu {
-	// 			if len(clubList) == 0 {
-	// 				fmt.Println("No clubs avaliable")
-	// 			} else {
-	// 				for key, value := range clubList {
+			for !subMenu {
+				var i int =1;
+				if len(clubList) == 0 {
+					fmt.Println("No clubs avaliable")
+				} else {
+					for key := range clubList {
+						fmt.Print(i)
+						fmt.Print(". ")
+						fmt.Println(key)
+						i++
 
-	// 					fmt.Print(key)
-	// 					fmt.Print(". ")
-	// 					fmt.Println(value.name)
+					}
+				}
+				fmt.Println("Please enter the name of the club you'd like to know more about.")
+				fmt.Println("-1 to return to menu")
+				var menuChoice string
+				scanner := bufio.NewScanner(os.Stdin)
+				scanner.Scan()
+				menuChoice = scanner.Text()		
+				if menuChoice == "-1" {
+					subMenu = true
+					break
+				}
+				if value, found := clubList[menuChoice]; found {
+				fmt.Println(value)
+			} else {
+				fmt.Println("invalid club!")
+			}
+			fmt.Println("Would you like to view more clubs? Input Yes or No") 
+			var inputCheck bool = false
+			for !inputCheck {
+			fmt.Scanln(&menuChoice)
+			
+			if(menuChoice == "Yes"){
+				inputCheck = true
+				continue
+				
+			}
+			if(menuChoice == "No"){
+				subMenu = true;
+				inputCheck = true
+			} else {
+				fmt.Println("Invalid choice, input Yes or No")
+			}
+		}
+			
 
 	// 				}
 	// 			}
@@ -141,15 +178,20 @@ func main() {
 	//meeting location here also
 	//case 9:
 
-	// 		}
-
-	// 	case 2:
-	// 		scanner := bufio.NewScanner(os.Stdin)
-	// 		fmt.Println("Input your club's name") //adds to the database of clubs prob just a vector, need some sort of confirmation here
-	// 		var clubName string
-	// 		scanner.Scan()
-	// 		clubName = scanner.Text()
-	// 		fmt.Scanln(&clubName)
+		case 2:
+			scanner := bufio.NewScanner(os.Stdin)
+			fmt.Println("Input your club's name") //adds to the database of clubs prob just a vector, need some sort of confirmation here
+			var clubName string
+			scanner.Scan()
+			clubName = scanner.Text()
+			fmt.Println("Tell us a little bit about your club") //has to run through our approval first so people cant just put random stuff
+			var clubDesc string
+			scanner.Scan()
+			clubDesc = scanner.Text()
+			
+			fmt.Println("Thank you! We will consider adding", clubName) //for the sake of this we're just adding it
+			clubList[clubName] = clubDesc
+			break
 
 	// 		fmt.Println("Tell us a little bit about your club") //has to run through our approval first so people cant just put random stuff
 	// 		var clubDesc string
