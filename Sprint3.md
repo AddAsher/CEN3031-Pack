@@ -17,7 +17,8 @@
 * Implemented in backend_test.go with testing of the functions newUserValid and userIsValid
 * newUserValid checks if email contains @ufl.edu, as well as if the password is at least 6 characters and has 1 digit.
 * userIsValid checks if email contains @ufl.edu and that the email matches the password associated with it in the map.
-* Tests registering accounts of different email types, empty strings, and passwords not fulfilling requirements.
-* Tests accounts of different email types, empty strings, wrong passwords, and not having an email registered.
+* Created func TestUserIsValid and func TestNewUserValid
+* TestNewUserValid tests registering accounts of different email types, empty strings, and passwords not fulfilling requirements.
+* TestUserIsValid tests accounts of different email types, empty strings, wrong passwords, and not having an email registered.
 ## Which ones didn't and why?
 * We werent able to implement a basic club listing page due to last minute implementation issues on the front end
