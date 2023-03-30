@@ -20,5 +20,7 @@
 * Created func TestUserIsValid and func TestNewUserValid
 * TestNewUserValid tests registering accounts of different email types, empty strings, and passwords not fulfilling requirements.
 * TestUserIsValid tests accounts of different email types, empty strings, wrong passwords, and not having an email registered.
+* If a test fails, it calls t.Error with an error message, and on success passes t.Log with a success message
+
 ## Which ones didn't and why?
 * We werent able to implement a basic club listing page due to last minute implementation issues on the front end
