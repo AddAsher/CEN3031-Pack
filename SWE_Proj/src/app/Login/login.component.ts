@@ -42,8 +42,11 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe(
       (response) => {
         console.log("Login request received on Front end");
+        this.onLogin();
+        document.forms[0].reset()
       },
       (error) => {
+        document.forms[0].reset()
         console.log(error);
       }
     );
@@ -53,7 +56,6 @@ export class LoginComponent {
     // Do some login logic here...
 
     // Navigate to the home page
-    this.onSubmit()
     this.router.navigate(['/home']);
   }
 

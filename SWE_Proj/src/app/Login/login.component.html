@@ -1,26 +1,26 @@
 <html>
-  <div class="toolbar-container">
-    <img src="assets/box_logo.jpg">
-    <h1>Welcome to <strong>{{title}}</strong></h1>
-  </div>
+<div class="toolbar-container">
+  <img src="assets/box_logo.jpg">
+  <h1>Welcome to <strong>{{title}}</strong></h1>
+</div>
 
-  <div class="header-container">
-    {{title}}
-  </div>
+<div class="header-container">
+  {{title}}
+</div>
 
-  <div class="login-container">
-    <form (ngSubmit)="onSubmit()">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" [(ngModel)]="username"><br><br>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" [(ngModel)]="password"><br><br>
-      
-      <div style="display: flex; justify-content: space-between;">
-        <input type="button" (click)="onLogin()" value="Login">
-        <input type="button" (click)="onRegister()" value="Register" style="margin-left: auto;">
-      </div>
+<div class="login-container">
+  <form>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" [(ngModel)]="username"><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" [(ngModel)]="password"><br><br>
 
-    </form>
-  </div>
+    <div style="display: flex; justify-content: space-between;">
+      <input type="button" (click)="onSubmit()" value="Login">
+      <input type="button" (click)="onRegister()" value="Register" style="margin-left: auto;">
+    </div>
+
+  </form>
+</div>
 
 </html>
