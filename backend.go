@@ -14,9 +14,9 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"regexp"
 	"strings"
 	"unicode"
-	"regexp"
 )
 
 // to test use test@ufl.edu and test
@@ -39,10 +39,12 @@ type User struct {
 }
 
 var clubList = make(map[string]string)
-//var users = make(map[string]string)
+
+// var users = make(map[string]string)
 var users = map[string]string{
-	"Admin@ufl.edu": "QWERTY",
+	"Admin@ufl.edu": "QWERTY1",
 }
+
 func main() {
 	users["Beta"] = "Charlie"
 	users["Delta"] = "Echo"
@@ -236,18 +238,21 @@ func userIsValid(n string, p string) string {
 	}
 }
 
-func newUserValid(n string, p string) string{
+func newUserValid(n string, p string) string {
 	if n == "" {
 		return "You cannot have a blank username!"
 	} else if !strings.Contains(n, "@ufl.edu") {
 		return "Your username must contain \"@ufl.edu\" at the end!"
+	}
 
 	if p == "" {
 		return "You cannot have a blank password!"
 	} else if len(p) < 6 {
 		return "Your password must be at least 6 characters long!"
-	} else if {
-		return "Incorrect password!"
+	} else if !regexp.MustCompile(`\d`).MatchString(p) {
+		return "Your password must contain at least 1 digit!"
+	} else {
+		return "Valid"
 	}
 }
 
@@ -263,11 +268,11 @@ func regHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	var valid string = userIsValid(newUser.Username, newUser.Password)
+	var valid string = newUserValid(newUser.Username, newUser.Password)
 	if valid != "Valid" {
 		http.Error(w, valid, http.StatusBadRequest)
 	} else {
-		fmt.Println("Login Successful")
+		fmt.Println("Register Successful")
 	}
 
 	users[newUser.Username] = newUser.Password
