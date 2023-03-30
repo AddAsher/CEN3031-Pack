@@ -48,6 +48,8 @@ export class LoginComponent {
       (error) => {
         document.forms[0].reset()
         console.log(error);
+        const errorMessage = error.error.split('\n')[0];
+        alert(errorMessage);
       }
     );
   }
