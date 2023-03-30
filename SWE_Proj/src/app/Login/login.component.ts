@@ -42,7 +42,7 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe(
       (response) => {
         console.log("Login request received on Front end");
-        this.onLogin();
+        this.goToHomePage();
         document.forms[0].reset()
       },
       (error) => {
@@ -54,14 +54,14 @@ export class LoginComponent {
     );
   }
 
-  onLogin(): void {
+  goToHomePage(): void {
     // Do some login logic here...
 
     // Navigate to the home page
     this.router.navigate(['/home']);
   }
 
-  onRegister(): void {
+  goToRegisterPage(): void {
     // Do some login logic here...
 
     // Navigate to the home page
