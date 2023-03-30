@@ -25,8 +25,8 @@ export interface User {
   // <li *ngFor="let user of users">{{ user.name }}</li>
   // </ul>
   // `,
-  templateUrl: './login.component.html', 
-  styleUrls: ['./login.component.css'] 
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 
 export class LoginComponent {
@@ -51,17 +51,18 @@ export class LoginComponent {
 
   onLogin(): void {
     // Do some login logic here...
-  
+
     // Navigate to the home page
+    this.onSubmit()
     this.router.navigate(['/home']);
   }
-  
+
   onRegister(): void {
     // Do some login logic here...
-  
+
     // Navigate to the home page
     this.router.navigate(['/home']);
   }
-    
+
 
 }
