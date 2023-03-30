@@ -55,12 +55,12 @@ export class LoginComponent {
     // Navigate to the home page
     this.router.navigate(['/home']);
   }
-  
+
   onRegister(): void {
     // Do some login logic here...
   
     // Navigate to the home page
-    this.router.navigate(['/home']);
+    this.router.navigate(['/register']);
   }
     
 
