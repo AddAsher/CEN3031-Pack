@@ -41,7 +41,7 @@ var clubList = make(map[string]string)
 var users = make(map[string]string)
 
 func main() {
-	users["Admin"] = "QWERTY"
+	users["Admin@ufl.edu"] = "QWERTY"
 	users["Beta"] = "Charlie"
 	users["Delta"] = "Echo"
 	clubList["fooclub"] = "foo"
@@ -65,7 +65,7 @@ func main() {
 	loginList["test"] = "test"
 	clubList["Adopted Student Organization"] = "The purpose of the organization is to create a supportive community for all adoptees and those interested in learning more about adoption. We will host various events throughout the year as an opportunity to share our experiences and educate about adoption through meaningful discussions. We will also participate in related philanthropic efforts to support adoptees and children in foster care in the Gainesville community and around the world."
 	clubList["A Reason to Give"] = "Our goal is to help serve the homeless population in Gainesville by providing weekly lunches!"
-	clubList["Adventist Christian Fellowship"] =  "Adventist Christian Fellowship is established for the purpose of representing the love of Jesus Christ. As a Christian Organization, we seek to spread the Advent Message and share the love of Jesus Christ to all those willing to receive it through open campus activities, Bible discussion, and other unique forms of fellowship. We show no preference or privilege on the basis of race, gender, sexual orientation or religious background."
+	clubList["Adventist Christian Fellowship"] = "Adventist Christian Fellowship is established for the purpose of representing the love of Jesus Christ. As a Christian Organization, we seek to spread the Advent Message and share the love of Jesus Christ to all those willing to receive it through open campus activities, Bible discussion, and other unique forms of fellowship. We show no preference or privilege on the basis of race, gender, sexual orientation or religious background."
 	clubList["Advertising Society"] = "Ad Society is the advertising student organization at the University of Florida. Open to all majors, Ad Society holds general body meetings with guest speakers from the industry, takes trips to visit advertising agencies in various cities, and hosts workshops for students professional improvement."
 	clubList["advnt"] = "advnt is a student-led creative program preparing the creatively inclined for careers in copywriting, illustration, graphic design, art direction, production, project management, and web design. We welcome those who see themselves as creatives and aspire to become capital ‘C’ creatives. All majors welcome."
 	clubList["A Reason to Give"] = "Our goal is to help serve the homeless population in Gainesville by providing weekly lunches!"
@@ -215,6 +215,24 @@ func getClubs(w http.ResponseWriter, r *http.Request) {
 	w.Write(ClubsJSON)
 }
 
+func userIsValid(n string, p string) string {
+	if n == "" {
+		return "Username is required!"
+	} else if !strings.Contains(n, "@ufl.edu") {
+		return "Username must contain \"@ufl.edu\"!"
+	} else if _, found := users[n]; !found {
+		return "Account with this username not found!"
+	}
+
+	if p == "" {
+		return "Password is required!"
+	} else if p == users[n] {
+		return "Valid"
+	} else {
+		return "Incorrect password!"
+	}
+}
+
 func loginHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Received login request")
 	// Parse request body
@@ -227,40 +245,17 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	var validUser bool = false
-	for !validUser {
-		if newUser.Username == "" {
-			http.Error(w, "username is required", http.StatusBadRequest)
-			return
-		} else if _, found := users[newUser.Username]; found {
-			fmt.Println(newUser.Username)
-		} else {
-			http.Error(w, "invalid username", http.StatusBadRequest)
-			return
-		}
-
-		if newUser.Password == "" {
-			http.Error(w, "password is required", http.StatusBadRequest)
-			return
-		} else if newUser.Password == users[newUser.Username] {
-			fmt.Println(newUser.Password)
-			validUser = true
-		} else {
-			http.Error(w, "invalid password", http.StatusBadRequest)
-			return
-		}
+	var valid string = userIsValid(newUser.Username, newUser.Password)
+	if valid != "Valid" {
+		http.Error(w, valid, http.StatusBadRequest)
+	} else {
+		fmt.Println("Login Successful")
 	}
 
 	users[newUser.Username] = newUser.Password
 
 	UsersJSON, _ := json.Marshal(newUser)
-	//response, err := json.Marshal(newUser)
-	// if err != nil {
-	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
-	// 	return
-	// }
-
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
+	// w.WriteHeader(http.StatusCreated)
 	w.Write(UsersJSON)
 }
