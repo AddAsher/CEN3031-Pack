@@ -14,11 +14,13 @@
       <input type="text" id="username" name="username" [(ngModel)]="username"><br><br>
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" [(ngModel)]="password"><br><br>
+      
       <div style="display: flex; justify-content: space-between;">
-        <input type="submit" (click)="buttonPress()" value="Login">
-        <input type="submit" (click)="buttonPress()" value="Register" style="margin-left: auto;">
+        <input type="button" (click)="onLogin()" value="Login">
+        <input type="button" (click)="onRegister()" value="Register" style="margin-left: auto;">
       </div>
+
     </form>
   </div>
-  
+
 </html>

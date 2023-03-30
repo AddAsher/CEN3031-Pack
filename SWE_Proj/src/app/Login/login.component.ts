@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 export interface User {
   id: number;
@@ -34,7 +35,7 @@ export class LoginComponent {
   title = 'PACK';
   users: any[] = [];
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   onSubmit() {
     console.log("Submitting login request:", this.username, this.password);
@@ -48,9 +49,19 @@ export class LoginComponent {
     );
   }
 
-  buttonPress() {
-    alert("Login button clicked")
-    this.onSubmit();
-    document.forms[0].reset();
+  onLogin(): void {
+    // Do some login logic here...
+  
+    // Navigate to the home page
+    this.router.navigate(['/home']);
   }
+  
+  onRegister(): void {
+    // Do some login logic here...
+  
+    // Navigate to the home page
+    this.router.navigate(['/home']);
+  }
+    
+
 }

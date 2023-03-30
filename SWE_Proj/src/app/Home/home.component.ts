@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({ templateUrl: 'home.component.html' })
-export class HomeComponent {}
+export class HomeComponent {
+    title = 'PACK';
+    
+}
