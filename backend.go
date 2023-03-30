@@ -38,8 +38,10 @@ type User struct {
 }
 
 var clubList = make(map[string]string)
-var users = make(map[string]string)
-
+//var users = make(map[string]string)
+var users = map[string]string{
+	"Admin@ufl.edu": "QWERTY",
+}
 func main() {
 	users["Admin@ufl.edu"] = "QWERTY"
 	users["Beta"] = "Charlie"
