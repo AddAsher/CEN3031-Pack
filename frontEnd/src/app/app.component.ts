@@ -1,32 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 
-export interface User {
-  id: number;
-  username: string;
-  email: string;
-  password: string;
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-
 @Component({
   selector: 'app-root',
-  template: `
-  // <ul>
-  // <li *ngFor="let user of users">{{ user.name }}</li>
-  // </ul>
-  // `,
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
+export class AppComponent {
 
-export class LoginComponent {
   password: string = "";
   username: string = "";
   title = 'PACK';
@@ -64,6 +48,4 @@ export class LoginComponent {
     // Navigate to the home page
     this.router.navigate(['/registration']);
   }
-
-
 }
