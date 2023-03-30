@@ -18,7 +18,7 @@
 * Implemented Cypress Suite Testing to verify connections existed between the login, registration, and home screen respectively
 * Verifies if the user logging in is already registered with the site or not, these are checked against our backend which has a map that store usernames and passwords as key value pairs.
 * If a test passes, it will print to the console saying information was successfully sent to the back end if not error message will appear
-* 
+* If user is already registered, the login button will redirect to the home page
 
 ## Backend Testing Details
 * Implemented in backend_test.go with testing of the functions newUserValid and userIsValid
