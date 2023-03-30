@@ -12,11 +12,13 @@
 * Successfully modified our login screen with the new registration option, as well as some other visual changes
 * Successfully implemeneted password length/digit requirements in signups
 * Backend testing implemeneted for validating a user on login as well as validating a user registering an account
+* Successfully implemented page routing through angular
 
 ## Frontend Testing Details
 * Implemented Cypress Suite Testing to verify connections existed between the login, registration, and home screen respectively
 * Verifies if the user logging in is already registered with the site or not, these are checked against our backend which has a map that store usernames and passwords as key value pairs.
 * If a test passes, it will print to the console saying information was successfully sent to the back end if not error message will appear
+* 
 
 ## Backend Testing Details
 * Implemented in backend_test.go with testing of the functions newUserValid and userIsValid
@@ -30,3 +32,4 @@
 
 ## Which ones didn't and why?
 * We werent able to implement a basic club listing page due to last minute implementation issues on the front end
+* Barring front end issues, page routing works with the small hiccup that the "landing page" (currently the login screen) becomes duplicated and stays through any page change
