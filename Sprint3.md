@@ -13,7 +13,7 @@
 * Successfully implemeneted password length/digit requirements in signups
 * Backend testing implemeneted for validating a user on login as well as validating a user registering an account
 
-##Frontend Testing Details
+## Frontend Testing Details
 * Implemented Cypress Suite Testing to verify connections existed between the login, registration, and home screen respectively
 * Verifies if the user logging in is already registered with the site or not, these are checked against our backend which has a map that store usernames and passwords as key value pairs.
 * If a test passes, it will print to the console saying information was successfully sent to the back end if not error message will appear
