@@ -19,4 +19,10 @@ export class AuthService {
         const body = { username, password };
         return this.http.post<User>(url, body);
     }
+
+    register(username: string, password: string) {
+        const url = `${this.baseUrl}/register`;
+        const body = { username, password };
+        return this.http.post<User>(url, body);
+    }
 }

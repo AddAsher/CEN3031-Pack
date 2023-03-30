@@ -37,6 +37,23 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) { }
 
+  onRegister() {
+    console.log("Submitting register request:", this.username, this.password);
+    this.authService.register(this.username, this.password).subscribe(
+      (response) => {
+        console.log("Register request received on Front end");
+        this.goToHomePage();
+        document.forms[0].reset()
+      },
+      (error) => {
+        document.forms[0].reset()
+        console.log(error);
+        const errorMessage = error.error.split('\n')[0];
+        alert(errorMessage);
+      }
+    );
+  }
+
   onSubmit() {
     console.log("Submitting login request:", this.username, this.password);
     this.authService.login(this.username, this.password).subscribe(
