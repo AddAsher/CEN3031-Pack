@@ -16,6 +16,7 @@ import (
 	"os"
 	"strings"
 	"unicode"
+	"regexp"
 )
 
 // to test use test@ufl.edu and test
@@ -41,11 +42,11 @@ var clubList = make(map[string]string)
 var users = make(map[string]string)
 
 func main() {
-	users["Admin@ufl.edu"] = "QWERTY"
 	users["Beta"] = "Charlie"
 	users["Delta"] = "Echo"
 	clubList["fooclub"] = "foo"
 	r := mux.NewRouter()
+	r.HandleFunc("/register", regHandler).Methods("POST")
 	r.HandleFunc("/login", loginHandler).Methods("POST")
 	r.HandleFunc("/login", getClubs).Methods("GET")
 	c := cors.New(cors.Options{
@@ -233,8 +234,23 @@ func userIsValid(n string, p string) string {
 	}
 }
 
-func loginHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Received login request")
+func newUserValid(n string, p string) string{
+	if n == "" {
+		return "You cannot have a blank username!"
+	} else if !strings.Contains(n, "@ufl.edu") {
+		return "Your username must contain \"@ufl.edu\" at the end!"
+
+	if p == "" {
+		return "You cannot have a blank password!"
+	} else if len(p) < 6 {
+		return "Your password must be at least 6 characters long!"
+	} else if {
+		return "Incorrect password!"
+	}
+}
+
+func regHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Received register request")
 	// Parse request body
 	decoder := json.NewDecoder(r.Body)
 	var newUser User
@@ -255,6 +271,34 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	users[newUser.Username] = newUser.Password
 
 	UsersJSON, _ := json.Marshal(newUser)
+	w.Header().Set("Content-Type", "application/json")
+	// w.WriteHeader(http.StatusCreated)
+	w.Write(UsersJSON)
+
+}
+
+func loginHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Received login request")
+	// Parse request body
+	decoder := json.NewDecoder(r.Body)
+	var possibleUser User
+	err := decoder.Decode(&possibleUser)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	defer r.Body.Close()
+
+	var valid string = userIsValid(possibleUser.Username, possibleUser.Password)
+	if valid != "Valid" {
+		http.Error(w, valid, http.StatusBadRequest)
+	} else {
+		fmt.Println("Login Successful")
+	}
+
+	users[possibleUser.Username] = possibleUser.Password
+
+	UsersJSON, _ := json.Marshal(possibleUser)
 	w.Header().Set("Content-Type", "application/json")
 	// w.WriteHeader(http.StatusCreated)
 	w.Write(UsersJSON)
