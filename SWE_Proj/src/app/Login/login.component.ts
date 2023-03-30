@@ -61,7 +61,7 @@ export class LoginComponent {
     // Do some login logic here...
 
     // Navigate to the home page
-    this.router.navigate(['/home']);
+    this.router.navigate(['/register']);
   }
 
 
