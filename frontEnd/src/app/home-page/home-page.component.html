@@ -1,17 +1,28 @@
 <html>
-    <div class = "homeBar">
-        <h1><em>{{welcomeMessage}}</em></h1>
-    </div>
-    <div class = "searchBar">
-        <form>
-            <label for = "searchBar"><b>Search for a club here:</b></label>
-            <input type="text" id="searchBar" [(ngModel)]="searchTerm" (keyup)="performSearch()">
-        </form>
-    </div>
+    <header>
+        <div class = "homeBar">
+            <h1><em>{{welcomeMessage}}</em></h1>
+        </div>
+    </header>
+    
+    <main>
+        <div class = "searchBar">
+            <form>
+                <label for = "searchBar"><b>Search for a club here:</b></label>
+                <input type="text" id="searchBar" [(ngModel)]="searchTerm" (keyup)="performSearch()">
+            </form>
+        </div>
+    </main>
+
+    <a href="https://www.youtube.com/watch?v=pbi5PQbPQqs" target = "_blank">Click me</a>
+
+    <footer></footer>
 </html>
 
 <!--Home page should aim to have the following functionality
     1. Feature a search bar for a user to search for the name of a specific club
     2. Display some of the clubs (5-10) with hyperlinks built into their names to support navigation to their external site
-    3. Nice visuals to give it a clean look
+    3. Include a text description of the club and its purpose along with a picture of events
+    4. Nice visuals to give it a clean look (I'm thinking add a simple slideshow of 3 images for each club with
+    buttons that allow a user to click through them)
 -->

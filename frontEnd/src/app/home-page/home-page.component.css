@@ -1,0 +1,10 @@
+/*Change style for heading on home page */
+.homeBar{
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: orange;
+    color: white; 
+}

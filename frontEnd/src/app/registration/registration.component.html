@@ -1,5 +1,27 @@
 <html>
-    <p>registration works!</p>
+    <header>
+        <div class = "registrationBar">
+            <h1><em>{{rmsg}}</em></h1>
+        </div>
+    </header>
+    <main>
+        <div class="registration-container">
+            <form>
+              <label for="username">Username:</label>
+              <input type="text" id="username" name="username" [(ngModel)]="username"><br><br>
+              <label for="password">Password (must be at least 8 characters):</label>
+              <input type="password" id="password" name="password" [(ngModel)]="password"><br><br>
+          
+              <div style="display: flex; justify-content: space-between;">
+                <input type="button" (click)="goToLogin()" value="Back to Login">
+                <input type="button" (click)="onSubmit()" value="Submit" style="margin-left: auto;">
+              </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
 </html>
 
 <!--Registration page should include the following:
