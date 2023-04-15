@@ -1,0 +1,13 @@
+<div class="slideshow-container">
+  <div class="slideshow-slide" *ngFor="let image of images; let i = index" [hidden]="currentSlideIndex !== i">
+    <img [src]="image" alt="Slideshow Image">
+  </div>
+
+  <div class="slideshow-navigation">
+    <button (click)="previousSlide()" [disabled]="currentSlideIndex === 0">Previous</button>
+    <button (click)="nextSlide()" [disabled]="currentSlideIndex === images.length - 1">Next</button>
+  </div>
+</div>
+
+
+  
