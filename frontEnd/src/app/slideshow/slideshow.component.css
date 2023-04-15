@@ -1,0 +1,36 @@
+.slideshow-navigation {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.slideshow-prev,
+.slideshow-next {
+  background-color: transparent;
+  border: none;
+  font-size: 32px;
+  color: white;
+  opacity: 0.5;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.slideshow-prev:hover,
+.slideshow-next:hover {
+  opacity: 1;
+}
+
+.slideshow-prev:focus,
+.slideshow-next:focus {
+  outline: none;
+}
+
+.slideshow-prev i,
+.slideshow-next i {
+  display: block;
+}
