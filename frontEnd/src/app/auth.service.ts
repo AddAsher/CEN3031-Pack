@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
 
 export interface User {
     username: string;
@@ -24,6 +26,10 @@ export class AuthService {
         const url = `${this.baseUrl}/registration`;
         const body = { username, password };
         return this.http.post<User>(url, body);
+    }
+
+    getClubs(): Observable<any> {
+        return this.http.get('/home');
     }
 
 
