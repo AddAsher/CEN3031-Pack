@@ -13,6 +13,7 @@
     "cypress": "^12.7.0"
   },
   "dependencies": {
+    "jwt-simple": "^0.5.6"
     "@angular/core": "^15.2.1",
     "@angular/forms": "^15.2.1"
   }
