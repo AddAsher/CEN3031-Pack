@@ -50,9 +50,9 @@ func main() {
 	users["Delta"] = "Echo"
 	clubList["fooclub"] = "foo"
 	r := mux.NewRouter()
-	r.HandleFunc("/register", regHandler).Methods("POST")
+	r.HandleFunc("/registration", regHandler).Methods("POST")
 	r.HandleFunc("/login", loginHandler).Methods("POST")
-	r.HandleFunc("/login", getClubs).Methods("GET")
+	r.HandleFunc("/home", getClubs).Methods("GET")
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"http://localhost:4200"},
 		AllowCredentials: true,
@@ -281,7 +281,6 @@ func regHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	// w.WriteHeader(http.StatusCreated)
 	w.Write(UsersJSON)
-
 }
 
 func loginHandler(w http.ResponseWriter, r *http.Request) {
