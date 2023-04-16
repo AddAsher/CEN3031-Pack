@@ -52,7 +52,7 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/registration", regHandler).Methods("POST")
 	r.HandleFunc("/login", loginHandler).Methods("POST")
-	r.HandleFunc("/login", getClubs).Methods("GET")
+	r.HandleFunc("/home", getClubs).Methods("GET")
 	r.HandleFunc("/home", clubAdd).Methods("POST")
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"http://localhost:4200"},
