@@ -1,4 +1,4 @@
-import { AuthService } from '../auth.service';
+import { AuthService, Club } from '../auth.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,17 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./club-list.component.css']
 })
 export class ClubListComponent {
-  clubs: { [key: string]: any } = {};
+  clubs: Map<string, Club> = new Map<string, Club>();
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.authService.getClubs().subscribe(
-      (response) => {
-        // Convert the object to an array
+      (response: Map<string, Club>) => {
         this.clubs = response;
         console.log(response);
-
       },
       (error) => {
         console.log(error);

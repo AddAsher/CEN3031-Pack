@@ -8,6 +8,12 @@ export interface User {
     password: string;
 }
 
+export interface Club {
+    description: string;
+    leader: string;
+    contact: string;
+}
+
 @Injectable({
     providedIn: 'root'
 })
@@ -28,10 +34,8 @@ export class AuthService {
         return this.http.post<User>(url, body);
     }
 
-    getClubs(): Observable<any> {
+    getClubs(): Observable<Map<string, Club>> {
         const url = `${this.baseUrl}/home`;
-        return this.http.get(url);
+        return this.http.get<Map<string, Club>>(url);
     }
-
-
 }
