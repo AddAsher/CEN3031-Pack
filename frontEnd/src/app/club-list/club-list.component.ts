@@ -8,7 +8,6 @@ import { Component } from '@angular/core';
 })
 export class ClubListComponent {
   clubs: { [key: string]: any } = {};
-  clubsA: any[] = [];
 
   constructor(private authService: AuthService) { }
 
