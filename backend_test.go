@@ -80,13 +80,41 @@ func TestNewUserValid(t *testing.T) {
 	}
 
 	if newUserValid("Admin@ufl.edu", "QWERTY1") == "Valid" {
-		t.Log("Account creation successful")
+		t.Log("Account creation success")
 	} else {
 		t.Error("Account creation failure")
 	}
 
 }
 
+
+
+func TestNewClubValid(t *testing.T) {
+	if newClubValid("", "") == "Club name required!"{
+		t.Log("Empty club name check success")
+	} else {
+		t.Error("Empty club name check fail")
+	}
+	clubList["testclubforthetest"] = "this is a test description"
+	if newClubValid("testclubforthetest", "") == "This club already exists!"{
+		t.Log("Duplicate club check success")
+	} else {
+		t.Error("Duplicate club check failure")
+	}
+	if newClubValid("thisisanewclub", "") == "Descripition is required!"{
+		t.Log("Empty description check success")
+	} else {
+		t.Error("Empty description check failure")
+	}
+	if newClubValid("thisisanewclub", "this is a test description") == "Valid"{
+		t.Log("Club creation success")
+	} else {
+		t.Error("Club creation failure")
+	}
+	
+	
+
+}
 //t.Run("No username", func(t *testing.T)){
 
 //	}
