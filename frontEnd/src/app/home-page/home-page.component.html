@@ -1,23 +1,27 @@
 <html>
-    <header>
-        <div class = "homeBar">
-            <h1><em>{{welcomeMessage}}</em></h1>
-        </div>
-    </header>
-    
-    <main>
-        <div class = "searchBar">
-            <form>
-                <label for = "searchBar"><b>Search for a club here:</b></label>
-                <input type="text" id="searchBar" [(ngModel)]="searchTerm" (keyup)="performSearch()">
-            </form>
-        </div>
-        <app-slideshow></app-slideshow>
-    </main>
+<header>
+    <div class="homeBar">
+        <h1><em>{{welcomeMessage}}</em></h1>
+    </div>
+</header>
 
-    <a href="https://www.youtube.com/watch?v=pbi5PQbPQqs" target = "_blank">Click me stupid</a>
+<main>
+    <div class="searchBar">
+        <form>
+            <label for="searchBar"><b>Search for a club here:</b></label>
+            <input type="text" id="searchBar" [(ngModel)]="searchTerm" (keyup)="performSearch()">
+        </form>
+    </div>
+    <app-slideshow></app-slideshow>
+    <div class="club-list-container">
+        <app-club-list></app-club-list>
+    </div>
+</main>
 
-    <footer></footer>
+<a href="https://www.youtube.com/watch?v=pbi5PQbPQqs" target="_blank">Click me stupid</a>
+
+<footer></footer>
+
 </html>
 
 <!--Home page should aim to have the following functionality

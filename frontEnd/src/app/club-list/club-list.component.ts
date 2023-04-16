@@ -8,13 +8,17 @@ import { Component } from '@angular/core';
 })
 export class ClubListComponent {
   clubs: { [key: string]: any } = {};
+  clubsA: any[] = [];
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.authService.getClubs().subscribe(
       (response) => {
+        // Convert the object to an array
         this.clubs = response;
+        console.log(response);
+
       },
       (error) => {
         console.log(error);

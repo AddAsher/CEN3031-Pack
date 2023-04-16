@@ -29,7 +29,8 @@ export class AuthService {
     }
 
     getClubs(): Observable<any> {
-        return this.http.get('/home');
+        const url = `${this.baseUrl}/home`;
+        return this.http.get(url);
     }
 
 

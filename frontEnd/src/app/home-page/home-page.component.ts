@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SlideshowComponent } from '../slideshow/slideshow.component';
+import { ClubListComponent } from '../club-list/club-list.component';
 
 @Component({
   selector: 'app-home-page',
@@ -16,14 +17,14 @@ export class HomePageComponent {
   constructor() {
     this.searchTerm = "";
     this.searchResults = [];
-    this.welcomeMessage =  "Find the club that's right for you!";
+    this.welcomeMessage = "Find the club that's right for you!";
   }
 
   performSearch() {
     //1. retrieve list of clubs stored in backend to be put into an array
     //2. search that array for the name if it is present
     //3. if found go from there
-         //if not create a popup saying 'Club not yet in database'
+    //if not create a popup saying 'Club not yet in database'
     throw new Error('Method not implemented.');
   }
 }

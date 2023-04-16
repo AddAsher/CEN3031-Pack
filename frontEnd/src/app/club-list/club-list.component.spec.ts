@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ClubListComponent } from './club-list.component';
 
 describe('ClubListComponent', () => {
@@ -8,9 +7,9 @@ describe('ClubListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ClubListComponent ]
+      declarations: [ClubListComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ClubListComponent);
     component = fixture.componentInstance;
