@@ -50,10 +50,10 @@ func main() {
 	users["Delta"] = "Echo"
 	clubList["fooclub"] = "foo"
 	r := mux.NewRouter()
-	r.HandleFunc("/register", regHandler).Methods("POST")
+	r.HandleFunc("/registration", regHandler).Methods("POST")
 	r.HandleFunc("/login", loginHandler).Methods("POST")
 	r.HandleFunc("/login", getClubs).Methods("GET")
-	r.HandleFunc("/home",clubAdd).Methods("POST")
+	r.HandleFunc("/home", clubAdd).Methods("POST")
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"http://localhost:4200"},
 		AllowCredentials: true,
@@ -220,34 +220,33 @@ func getClubs(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Write(ClubsJSON)
 }
-	func clubAdd(w http.ResponseWriter, r *http.Request) {
-		fmt.Println("Received register request")
-		// Parse request body
-		decoder := json.NewDecoder(r.Body)
-		var newClub Club
-		err := decoder.Decode(&newClub)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusBadRequest)
-			return
-		}
-		defer r.Body.Close()
-	
-		var valid string = newUserValid(newClub.name, newClub.description)
-		if valid != "Valid" {
-			http.Error(w, valid, http.StatusBadRequest)
-		} else {
-			fmt.Println("Register Successful")
-		}
-	
-		users[newClub.name] = newClub.description
-	
-		UsersJSON, _ := json.Marshal(newClub)
-		w.Header().Set("Content-Type", "application/json")
-		// w.WriteHeader(http.StatusCreated)
-		w.Write(UsersJSON)
-	
+func clubAdd(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Received register request")
+	// Parse request body
+	decoder := json.NewDecoder(r.Body)
+	var newClub Club
+	err := decoder.Decode(&newClub)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	defer r.Body.Close()
+
+	var valid string = newUserValid(newClub.name, newClub.description)
+	if valid != "Valid" {
+		http.Error(w, valid, http.StatusBadRequest)
+	} else {
+		fmt.Println("Register Successful")
 	}
 
+	users[newClub.name] = newClub.description
+
+	UsersJSON, _ := json.Marshal(newClub)
+	w.Header().Set("Content-Type", "application/json")
+	// w.WriteHeader(http.StatusCreated)
+	w.Write(UsersJSON)
+
+}
 
 func userIsValid(n string, p string) string {
 	if n == "" {
@@ -268,7 +267,7 @@ func userIsValid(n string, p string) string {
 }
 
 func newClubValid(n string, d string) string {
-	if n == ""{
+	if n == "" {
 		return "Club name required!"
 	} else if _, found := clubList[n]; found {
 		return "This club already exists!"
