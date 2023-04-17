@@ -90,23 +90,39 @@ func TestNewUserValid(t *testing.T) {
 
 
 func TestNewClubValid(t *testing.T) {
-	if newClubValid("", "") == "Club name required!"{
+	if newClubValid("", "","","") == "Club name required!"{
 		t.Log("Empty club name check success")
 	} else {
 		t.Error("Empty club name check fail")
 	}
-	clubList["testclubforthetest"] = "this is a test description"
-	if newClubValid("testclubforthetest", "") == "This club already exists!"{
+	clubList["testclubforthetest"] = Club{"testdesc", "test name", "testemail@ufl.edu"}
+	if newClubValid("testclubforthetest", "", "", "") == "This club already exists!"{
 		t.Log("Duplicate club check success")
 	} else {
 		t.Error("Duplicate club check failure")
 	}
-	if newClubValid("thisisanewclub", "") == "Descripition is required!"{
+	if newClubValid("thisisanewclub", "", "", "") == "Descripition is required!"{
 		t.Log("Empty description check success")
 	} else {
 		t.Error("Empty description check failure")
 	}
-	if newClubValid("thisisanewclub", "this is a test description") == "Valid"{
+	if newClubValid("thisisanewerclub", "randomstuffhere", "", "") == "Club founder is required!"{
+		t.Log("Empty club founder check success")
+	} else {
+		t.Error("Empty club founder check failure")
+	}
+	if newClubValid("coolclub", "club information", "John Smith", "") == "Contact info is required!"{
+		t.Log("Empty contact information check success")
+	} else {
+		t.Error("Empty contact information check failure")
+	}
+	if newClubValid("coolclub", "club information", "John Smith", "johnsmithufl.edu") == "Contact information must be a valid email!"{
+		t.Log("Email format check success")
+	} else {
+		t.Error("Email format check failure")
+	}
+
+	if newClubValid("successfulclubtest", "testdescripition", "John Smith", "johnsmith@ufl.edu") == "Valid"{
 		t.Log("Club creation success")
 	} else {
 		t.Error("Club creation failure")

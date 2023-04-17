@@ -342,6 +342,8 @@ func newClubValid(n string, d string, l string, c string) string {
 	}
 	if c == ""{
 		return "Contact info is required!"
+	} else if !strings.Contains(c, "@") {
+		return "Contact information must be a valid email!"
 	}
 
 	return "Valid"
