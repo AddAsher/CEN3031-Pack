@@ -28,6 +28,7 @@ type Claims struct {
 }
 
 type Club struct { //We'll use this when we have a CSV, for now we can just use println to show how it would function.
+//	Name		string `json:"name"`
 	Description string `json:"description"`
 	Leader      string `json:"leader"`
 	Contact     string `json:"contact"`
@@ -283,13 +284,25 @@ func clubAdd(w http.ResponseWriter, r *http.Request) {
 
 	// Create a new Club struct with the decoded data
 	newClub := Club{
+	//	Name:		 clubData.Name,
 		Description: clubData.Description,
 		Leader:      clubData.Leader,
 		Contact:     clubData.Contact,
 	}
 
+
+
 	// Add the new club to the clubList map
-	clubList[clubData.Name] = newClub
+	//new club valid
+	var valid string = newClubValid(clubData.Name, clubData.Description, clubData.Leader, clubData.Contact)
+	if valid != "Valid"{
+		http.Error(w, valid, http.StatusBadRequest)
+	} else {
+		clubList[clubData.Name] = newClub
+		fmt.Println("Club creation successful!")
+
+	}
+
 
 	// Send a response indicating success
 	w.WriteHeader(http.StatusCreated)
@@ -314,7 +327,7 @@ func userIsValid(n string, p string) string {
 	}
 }
 
-func newClubValid(n string, d string) string {
+func newClubValid(n string, d string, l string, c string) string {
 	if n == "" {
 		return "Club name required!"
 	} else if _, found := clubList[n]; found {
@@ -323,6 +336,12 @@ func newClubValid(n string, d string) string {
 
 	if d == "" {
 		return "Descripition is required!"
+	}
+	if l == ""{
+		return "Club founder is required!"
+	}
+	if c == ""{
+		return "Contact info is required!"
 	}
 
 	return "Valid"
