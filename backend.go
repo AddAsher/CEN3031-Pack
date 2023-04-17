@@ -63,7 +63,7 @@ func main() {
 	r.HandleFunc("/registration", regHandler).Methods("POST")
 	r.HandleFunc("/login", loginHandler).Methods("POST")
 	r.HandleFunc("/home", newgetClubs).Methods("GET")
-	//r.HandleFunc("/home", clubAdd).Methods("POST")
+	r.HandleFunc("/home", clubAdd).Methods("POST")
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"http://localhost:4200"},
 		AllowCredentials: true,
@@ -248,6 +248,7 @@ func newgetClubs(w http.ResponseWriter, r *http.Request) {
 // 	}
 // 	defer r.Body.Close()
 
+// 	clubList[newClub.Name] = newClub
 // 	var valid string = newUserValid(newClub.name, newClub.description)
 // 	if valid != "Valid" {
 // 		http.Error(w, valid, http.StatusBadRequest)
@@ -263,6 +264,37 @@ func newgetClubs(w http.ResponseWriter, r *http.Request) {
 // 	w.Write(UsersJSON)
 
 // }
+
+func clubAdd(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	// Decode the JSON data from the request body
+	var clubData struct {
+		Name        string `json:"name"`
+		Description string `json:"description"`
+		Leader      string `json:"leader"`
+		Contact     string `json:"contact"`
+	}
+	err := json.NewDecoder(r.Body).Decode(&clubData)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	// Create a new Club struct with the decoded data
+	newClub := Club{
+		Description: clubData.Description,
+		Leader:      clubData.Leader,
+		Contact:     clubData.Contact,
+	}
+
+	// Add the new club to the clubList map
+	clubList[clubData.Name] = newClub
+
+	// Send a response indicating success
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(map[string]string{"message": "Club added successfully"})
+}
 
 func userIsValid(n string, p string) string {
 	if n == "" {
