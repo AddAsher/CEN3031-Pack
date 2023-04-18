@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SlideshowComponent } from '../slideshow/slideshow.component';
 import { ClubListComponent } from '../club-list/club-list.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -14,7 +15,7 @@ export class HomePageComponent {
   searchResults: any[];
   welcomeMessage: string;
 
-  constructor() {
+  constructor(private router: Router) {
     this.searchTerm = "";
     this.searchResults = [];
     this.welcomeMessage = "Find the club that's right for you!";
@@ -25,6 +26,10 @@ export class HomePageComponent {
     //2. search that array for the name if it is present
     //3. if found go from there
     //if not create a popup saying 'Club not yet in database'
-    throw new Error('Method not implemented.');
+    
+  }
+
+  Logout() {
+    this.router.navigate(['']);
   }
 }

@@ -1,28 +1,38 @@
 <html>
-<header>
-    <div class="homeBar">
-        <h1><em>{{welcomeMessage}}</em></h1>
-    </div>
-</header>
-
-<main>
-    <div class="searchBar">
-        <form>
-            <label for="searchBar"><b>Search for a club here:</b></label>
-            <input type="text" id="searchBar" [(ngModel)]="searchTerm" (keyup)="performSearch()">
-        </form>
-    </div>
-    <app-slideshow></app-slideshow>
-    <div class="club-list-container">
-        <app-club-list></app-club-list>
-    </div>
-</main>
-
-<a href="https://www.youtube.com/watch?v=pbi5PQbPQqs" target="_blank">Click me stupid</a>
-
-<footer></footer>
-
+    <head>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="homeBar">
+                <h1><em>Find the club that's right for you</em></h1>
+                <div class = "logoutBtn">
+                    <input type = "button" (click)="Logout()" value ="Logout">
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="searchBar">
+                <form>
+                    <label for="searchBar"><b>Search for a club here:</b></label>
+                    <input type="text" id="searchBar" [(ngModel)]="searchTerm">
+                    <input type = "button" (click)="performSearch()" value = "Search">
+                </form>
+            </div>
+            <!-- <app-slideshow></app-slideshow>
+            <div class="club-list-container">
+                <app-club-list></app-club-list>
+            </div> -->
+        </main>
+        
+        <a href="https://www.youtube.com/watch?v=pbi5PQbPQqs" target="_blank">Click me stupid</a>
+        
+        <footer></footer>
+    </body>
 </html>
+
 
 <!--Home page should aim to have the following functionality
     1. Feature a search bar for a user to search for the name of a specific club

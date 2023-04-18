@@ -1,17 +1,55 @@
-/*Change style for heading on home page */
+.logoutBtn input[type = "button"]{
+    position: relative;
+    top: 20;
+    right: 20;
+    background-color: royalblue;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+}
+.logoutBtn input[type = "button"]:hover{
+    background-color: darkblue;
+}
 .homeBar{
     font-size: 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
+    margin-top: 0;
+    padding: 0;
     background-color: orange;
     color: white; 
 }
-.searchBar{
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    opacity: 0.8;
+.searchBar form {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+}
+
+.searchBar label {
+      font-weight: bold;
+    font-style: italic;
+}
+
+.searchBar input[type="text"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin: 0 10px;
+  flex-grow: 1;
+}
+
+.searchBar input[type="button"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.searchBar input[type="button"]:hover {
+  background-color: #3e8e41;
 }
