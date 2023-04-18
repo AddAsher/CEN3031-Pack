@@ -1,0 +1,4 @@
+<h1>Club List</h1>
+<div *ngFor="let club of clubs | keyvalue">
+    {{club.key}} - {{club.value.description}} - {{club.value.leader}} - {{club.value.contact}}
+</div>
