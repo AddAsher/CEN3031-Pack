@@ -32,7 +32,7 @@ http://localhost:4200/home
 GET
 ### Request/Response Parameters
 Returns the clubList map from the back end.
-## Functions:
+### Functions:
 getClubs(w http.ResponseWriter, r \*http.Request) - Returns clubList map to the frontend. 
 
 ## Adding Club To Club List
