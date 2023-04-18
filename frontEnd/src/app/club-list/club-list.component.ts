@@ -1,5 +1,5 @@
 import { AuthService, Club } from '../auth.service';
-import { Component } from '@angular/core';
+import { Component, EventEmitter,Output } from '@angular/core';
 
 @Component({
   selector: 'app-club-list',
@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class ClubListComponent {
   clubs: Map<string, Club> = new Map<string, Club>();
+
+  @Output() sender = new EventEmitter();
 
   constructor(private authService: AuthService) { }
 
@@ -21,5 +23,8 @@ export class ClubListComponent {
         console.log(error);
       }
     );
+    
+    this.sender.emit(this.clubs);
   }
+
 }

@@ -21,10 +21,10 @@
                     <input type = "button" (click)="performSearch()" value = "Search">
                 </form>
             </div>
-            <!-- <app-slideshow></app-slideshow>
+            <!-- <app-slideshow></app-slideshow> -->
             <div class="club-list-container">
-                <app-club-list></app-club-list>
-            </div> -->
+                <app-club-list hidden (sender) ="receiver($event)"></app-club-list>
+            </div>
         </main>
         
         <a href="https://www.youtube.com/watch?v=pbi5PQbPQqs" target="_blank">Click me stupid</a>

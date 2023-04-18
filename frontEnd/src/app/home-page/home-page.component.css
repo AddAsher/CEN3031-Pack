@@ -40,3 +40,18 @@
 .searchBar input[type="button"]:hover {
   background-color: #3e8e41;
 }
+
+.logoutBtn input[type = "button"]{
+    position: relative;
+    top: 20;
+    right: 20;
+    background-color: royalblue;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+}
+.logoutBtn input[type = "button"]:hover{
+    background-color: darkblue;
+}

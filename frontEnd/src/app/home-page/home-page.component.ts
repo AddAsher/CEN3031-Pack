@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import { SlideshowComponent } from '../slideshow/slideshow.component';
 import { ClubListComponent } from '../club-list/club-list.component';
-import { AuthService } from '../auth.service';
+import { AuthService, Club } from '../auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,27 +16,33 @@ export class HomePageComponent {
   searchResults: any[];
   welcomeMessage: string;
 
+
+
   constructor(private authService: AuthService, private router: Router) {
     this.searchTerm = "";
     this.searchResults = [];
     this.welcomeMessage = "Find the club that's right for you!";
   }
 
+  receiver(event: Map<string, Club>){
+    console.log(event);
+  }
 
   performSearch() {
     //1. retrieve list of clubs stored in backend to be put into an array
     //2. search that array for the name if it is present
     //3. if found go from there
     //if not create a popup saying 'Club not yet in database'
-    
+    this.searchTerm=this.searchTerm.toLowerCase();
   }
 
   Logout() {
+    alert("Thank you for using our website. \nHave a great day!");
     this.router.navigate(['']);
   }
 
   logout() {
-    alert("You have successfully logged out")
+    alert("You have successfully logged out");
     this.router.navigate(['']);
   }
 
