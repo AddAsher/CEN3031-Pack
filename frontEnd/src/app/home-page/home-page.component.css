@@ -1,17 +1,28 @@
 /*Change style for heading on home page */
-.homeBar{
+.homeBar {
     font-size: 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
     background-color: orange;
-    color: white; 
+    color: white;
 }
-.searchBar{
+
+.searchBar {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     opacity: 0.8;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.name {
+    text-align: right;
 }

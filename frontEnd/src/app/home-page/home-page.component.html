@@ -2,6 +2,10 @@
 <header>
     <div class="homeBar">
         <h1><em>{{welcomeMessage}}</em></h1>
+        <div class="user">
+            <span class="name">John Doe</span>
+            <input type="button" (click)="logout()" value="Logout">
+        </div>
     </div>
 </header>
 
@@ -13,7 +17,7 @@
         </form>
     </div>
     <app-slideshow></app-slideshow>
-    <div class="club-list-container">
+    <div class="club-list-containr">
         <app-club-list></app-club-list>
     </div>
 </main>

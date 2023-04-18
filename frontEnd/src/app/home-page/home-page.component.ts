@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { SlideshowComponent } from '../slideshow/slideshow.component';
 import { ClubListComponent } from '../club-list/club-list.component';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -14,11 +16,12 @@ export class HomePageComponent {
   searchResults: any[];
   welcomeMessage: string;
 
-  constructor() {
+  constructor(private authService: AuthService, private router: Router) {
     this.searchTerm = "";
     this.searchResults = [];
     this.welcomeMessage = "Find the club that's right for you!";
   }
+
 
   performSearch() {
     //1. retrieve list of clubs stored in backend to be put into an array
@@ -27,4 +30,12 @@ export class HomePageComponent {
     //if not create a popup saying 'Club not yet in database'
     throw new Error('Method not implemented.');
   }
+
+  logout() {
+    alert("You have successfully logged out")
+    this.router.navigate(['']);
+  }
+
+
+
 }
