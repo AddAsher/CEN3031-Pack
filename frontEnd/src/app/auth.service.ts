@@ -12,6 +12,7 @@ export interface Club {
     description: string;
     leader: string;
     contact: string;
+    hyperlink: string
 }
 
 @Injectable({

@@ -6,7 +6,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./slideshow.component.css']
 })
 export class SlideshowComponent {
-  @Input() clubName: string;
+  @Input()
+  clubName: string = "";
 
   showNavigation = false;
   images = [

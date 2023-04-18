@@ -21,7 +21,7 @@ import { AddClubComponent } from './add-club/add-club/add-club.component';
     RegistrationComponent,
     SlideshowComponent,
     ClubListComponent
-    AddClubComponent
+    //AddClubComponent
   ],
   imports: [
     BrowserModule,

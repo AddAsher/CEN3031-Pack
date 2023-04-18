@@ -28,10 +28,11 @@ type Claims struct {
 }
 
 type Club struct { //We'll use this when we have a CSV, for now we can just use println to show how it would function.
-//	Name		string `json:"name"`
+	//	Name		string `json:"name"`
 	Description string `json:"description"`
 	Leader      string `json:"leader"`
 	Contact     string `json:"contact"`
+	Hyperlink   string `json:"hyperlink"`
 }
 
 // Club clubs := []Club{}
@@ -47,8 +48,8 @@ var users = map[string]string{
 	"Admin@ufl.edu": "QWERTY1",
 }
 
- //clubList["A Reason to Give"] = "Our goal is to help serve the homeless population in Gainesville by providing weekly lunches!"
- //clubList["Adventist Christian Fellowship"] = "Adventist Christian Fellowship is established for the purpose of representing the love of Jesus Christ. As a Christian Organization, we seek to spread the Advent Message and share the love of Jesus Christ to all those willing to receive it through open campus activities, Bible discussion, and other unique forms of fellowship. We show no preference or privilege on the basis of race, gender, sexual orientation or religious background."
+// clubList["A Reason to Give"] = "Our goal is to help serve the homeless population in Gainesville by providing weekly lunches!"
+// clubList["Adventist Christian Fellowship"] = "Adventist Christian Fellowship is established for the purpose of representing the love of Jesus Christ. As a Christian Organization, we seek to spread the Advent Message and share the love of Jesus Christ to all those willing to receive it through open campus activities, Bible discussion, and other unique forms of fellowship. We show no preference or privilege on the basis of race, gender, sexual orientation or religious background."
 // clubList["Advertising Society"] = "Ad Society is the advertising student organization at the University of Florida. Open to all majors, Ad Society holds general body meetings with guest speakers from the industry, takes trips to visit advertising agencies in various cities, and hosts workshops for students professional improvement."
 // clubList["advnt"] = "advnt is a student-led creative program preparing the creatively inclined for careers in copywriting, illustration, graphic design, art direction, production, project management, and web design. We welcome those who see themselves as creatives and aspire to become capital ‘C’ creatives. All majors welcome."
 // clubList["Alpha Omega - Jewish Dental Society"] = "Section 1 – Mission Statement To enhance the dental profession and lives of dental professionals worldwide by promoting and supporting ideals of global oral health, education, and the bonds of fraternity.	"
@@ -58,12 +59,12 @@ var users = map[string]string{
 func main() {
 	users["Beta"] = "Charlie"
 	users["Delta"] = "Echo"
-	clubList["Adopted Student Organization"] = Club{"The purpose of the organization is to create a supportive community for all adoptees and those interested in learning more about adoption. We will host various events throughout the year as an opportunity to share our experiences and educate about adoption through meaningful discussions. We will also participate in related philanthropic efforts to support adoptees and children in foster care in the Gainesville community and around the world.", "Krista Marrocco", "krista.marrocco@ufl.edu"} 
-	clubList["fooclub"] = Club{"foo", "Mr. Foo", "foofy@gmail.com"}
+	clubList["Adopted Student Organization"] = Club{"The purpose of the organization is to create a supportive community for all adoptees and those interested in learning more about adoption. We will host various events throughout the year as an opportunity to share our experiences and educate about adoption through meaningful discussions. We will also participate in related philanthropic efforts to support adoptees and children in foster care in the Gainesville community and around the world.", "Krista Marrocco", "krista.marrocco@ufl.edu", "https://orgs.studentinvolvement.ufl.edu/Organization/adopted-student-organization"}
+	clubList["fooclub"] = Club{"foo", "Mr. Foo", "foofy@gmail.com", "foofy.com"}
 	r := mux.NewRouter()
 	r.HandleFunc("/registration", regHandler).Methods("POST")
 	r.HandleFunc("/login", loginHandler).Methods("POST")
-	r.HandleFunc("/home", newgetClubs).Methods("GET")
+	r.HandleFunc("/home", getClubs).Methods("GET")
 	r.HandleFunc("/home", clubAdd).Methods("POST")
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"http://localhost:4200"},
@@ -223,20 +224,19 @@ func (c *Claims) Valid() error {
 }
 
 func getClubs(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "applications/json")
-	ClubsJSON, err := json.Marshal(clubList)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
-	w.Write(ClubsJSON)
-}
-
-func newgetClubs(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(clubList)
 }
 
+// func getClubs(w http.ResponseWriter, r *http.Request) {
+// 	w.Header().Set("Content-Type", "applications/json")
+// 	ClubsJSON, err := json.Marshal(clubList)
+// 	if err != nil {
+// 		http.Error(w, err.Error(), http.StatusBadRequest)
+// 		return
+// 	}
+// 	w.Write(ClubsJSON)
+// }
 // func clubAdd(w http.ResponseWriter, r *http.Request) {
 // 	fmt.Println("Received register request")
 // 	// Parse request body
@@ -284,25 +284,22 @@ func clubAdd(w http.ResponseWriter, r *http.Request) {
 
 	// Create a new Club struct with the decoded data
 	newClub := Club{
-	//	Name:		 clubData.Name,
+		//	Name:		 clubData.Name,
 		Description: clubData.Description,
 		Leader:      clubData.Leader,
 		Contact:     clubData.Contact,
 	}
 
-
-
 	// Add the new club to the clubList map
 	//new club valid
 	var valid string = newClubValid(clubData.Name, clubData.Description, clubData.Leader, clubData.Contact)
-	if valid != "Valid"{
+	if valid != "Valid" {
 		http.Error(w, valid, http.StatusBadRequest)
 	} else {
 		clubList[clubData.Name] = newClub
 		fmt.Println("Club creation successful!")
 
 	}
-
 
 	// Send a response indicating success
 	w.WriteHeader(http.StatusCreated)
@@ -337,10 +334,10 @@ func newClubValid(n string, d string, l string, c string) string {
 	if d == "" {
 		return "Descripition is required!"
 	}
-	if l == ""{
+	if l == "" {
 		return "Club founder is required!"
 	}
-	if c == ""{
+	if c == "" {
 		return "Contact info is required!"
 	} else if !strings.Contains(c, "@") {
 		return "Contact information must be a valid email!"
