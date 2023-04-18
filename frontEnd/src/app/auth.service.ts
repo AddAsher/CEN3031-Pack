@@ -36,7 +36,13 @@ export class AuthService {
     }
 
     getClubs(): Observable<Map<string, Club>> {
-        const url = `${this.baseUrl}/home`;
+        const url = `${this.baseUrl}/home/get`;
         return this.http.get<Map<string, Club>>(url);
+    }
+
+    likeClub(username: string, clubname: string) {
+        const url = `${this.baseUrl}/home/like`;
+        const body = { username, clubname };
+        return this.http.post(url, body);
     }
 }

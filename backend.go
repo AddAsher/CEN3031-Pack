@@ -47,6 +47,7 @@ var clubList = make(map[string]Club)
 var users = map[string]User{
 	"Admin@ufl.edu": {"QWERTY1", "foo"},
 }
+var currUser = "Admin"
 
 // clubList["A Reason to Give"] = "Our goal is to help serve the homeless population in Gainesville by providing weekly lunches!"
 // clubList["Adventist Christian Fellowship"] = "Adventist Christian Fellowship is established for the purpose of representing the love of Jesus Christ. As a Christian Organization, we seek to spread the Advent Message and share the love of Jesus Christ to all those willing to receive it through open campus activities, Bible discussion, and other unique forms of fellowship. We show no preference or privilege on the basis of race, gender, sexual orientation or religious background."
@@ -63,9 +64,9 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/registration", regHandler).Methods("POST")
 	r.HandleFunc("/login", loginHandler).Methods("POST")
-	r.HandleFunc("/home", getClubs).Methods("GET")
-	r.HandleFunc("/home", clubAdd).Methods("POST")
-	r.HandleFunc("/home", likeClub).Methods("POST")
+	r.HandleFunc("/home/get", getClubs).Methods("GET")
+	r.HandleFunc("/home/add", clubAdd).Methods("POST")
+	r.HandleFunc("/home/like", likeClub).Methods("POST")
 
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"http://localhost:4200"},
@@ -232,6 +233,11 @@ func getClubs(w http.ResponseWriter, r *http.Request) {
 func likeClub(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(clubList)
+}
+
+func currentUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(currUser)
 }
 
 // func getClubs(w http.ResponseWriter, r *http.Request) {

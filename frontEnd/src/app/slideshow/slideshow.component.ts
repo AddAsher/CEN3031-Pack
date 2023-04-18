@@ -26,4 +26,8 @@ export class SlideshowComponent {
   nextSlide() {
     this.currentSlideIndex++;
   }
+
+  likeClub() {
+
+  }
 }
