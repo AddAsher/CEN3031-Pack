@@ -37,15 +37,15 @@ type Club struct { //We'll use this when we have a CSV, for now we can just use 
 
 // Club clubs := []Club{}
 type User struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
+	Password   string `json:"password"`
+	LikedClubs string `json:"likedClubs`
 }
 
 var clubList = make(map[string]Club)
 
 // var users = make(map[string]string)
-var users = map[string]string{
-	"Admin@ufl.edu": "QWERTY1",
+var users = map[string]User{
+	"Admin@ufl.edu": {"QWERTY1", "foo"},
 }
 
 // clubList["A Reason to Give"] = "Our goal is to help serve the homeless population in Gainesville by providing weekly lunches!"
@@ -57,8 +57,7 @@ var users = map[string]string{
 // clubList["The Society of PC Building"] = "The Society of PC Building's primary purpose is to provide students with an outlet to learn more about building PCs, regardless of experience, to foster knowledge and confidence in its members, and provide club members with hands-on experiences building PCs. The Society of PC Building will host a variety of events, meetings, and workshops for members to engage with each other and campus."
 // clubList["3D Printing Club"] = "The 3D Printing Club is established for the purpose of educating UF students on the world of 3D printing and how 3D printing and related skills can be used within their education, professionally, and leisurely. Additionally, projects will be set in place to address issues seen within the University of Florida, the local Gainesville area, and nationally."
 func main() {
-	users["Beta"] = "Charlie"
-	users["Delta"] = "Echo"
+	users["Beta"] = User{"Charlie", "Charles"}
 	clubList["Adopted Student Organization"] = Club{"The purpose of the organization is to create a supportive community for all adoptees and those interested in learning more about adoption. We will host various events throughout the year as an opportunity to share our experiences and educate about adoption through meaningful discussions. We will also participate in related philanthropic efforts to support adoptees and children in foster care in the Gainesville community and around the world.", "Krista Marrocco", "krista.marrocco@ufl.edu", "https://orgs.studentinvolvement.ufl.edu/Organization/adopted-student-organization"}
 	clubList["fooclub"] = Club{"foo", "Mr. Foo", "foofy@gmail.com", "foofy.com"}
 	r := mux.NewRouter()
@@ -66,6 +65,8 @@ func main() {
 	r.HandleFunc("/login", loginHandler).Methods("POST")
 	r.HandleFunc("/home", getClubs).Methods("GET")
 	r.HandleFunc("/home", clubAdd).Methods("POST")
+	r.HandleFunc("/home", likeClub).Methods("POST")
+
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"http://localhost:4200"},
 		AllowCredentials: true,
@@ -228,6 +229,11 @@ func getClubs(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(clubList)
 }
 
+func likeClub(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(clubList)
+}
+
 // func getClubs(w http.ResponseWriter, r *http.Request) {
 // 	w.Header().Set("Content-Type", "applications/json")
 // 	ClubsJSON, err := json.Marshal(clubList)
@@ -317,7 +323,7 @@ func userIsValid(n string, p string) string {
 
 	if p == "" {
 		return "Password is required!"
-	} else if p == users[n] {
+	} else if p == users[n].Password {
 		return "Valid"
 	} else {
 		return "Incorrect password!"
@@ -366,6 +372,8 @@ func newUserValid(n string, p string) string {
 }
 
 func regHandler(w http.ResponseWriter, r *http.Request) {
+	//In here the name and password of the user are being put into
+	//the password and liked Clubs field.
 	fmt.Println("Received register request")
 	// Parse request body
 	decoder := json.NewDecoder(r.Body)
@@ -377,14 +385,14 @@ func regHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	var valid string = newUserValid(newUser.Username, newUser.Password)
+	var valid string = newUserValid(newUser.Password, newUser.LikedClubs)
 	if valid != "Valid" {
 		http.Error(w, valid, http.StatusBadRequest)
 	} else {
 		fmt.Println("Register Successful")
 	}
 
-	users[newUser.Username] = newUser.Password
+	users[newUser.Password] = User{newUser.LikedClubs, ""}
 
 	UsersJSON, _ := json.Marshal(newUser)
 	w.Header().Set("Content-Type", "application/json")
@@ -394,6 +402,8 @@ func regHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func loginHandler(w http.ResponseWriter, r *http.Request) {
+	//In here the name and password of the user are being put into
+	//the password and liked Clubs field.
 	fmt.Println("Received login request")
 	// Parse request body
 	decoder := json.NewDecoder(r.Body)
@@ -405,14 +415,14 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	var valid string = userIsValid(possibleUser.Username, possibleUser.Password)
+	var valid string = userIsValid(possibleUser.Password, possibleUser.LikedClubs)
 	if valid != "Valid" {
 		http.Error(w, valid, http.StatusBadRequest)
 	} else {
 		fmt.Println("Login Successful")
 	}
 
-	users[possibleUser.Username] = possibleUser.Password
+	users[possibleUser.Password] = User{possibleUser.Password, possibleUser.LikedClubs}
 
 	UsersJSON, _ := json.Marshal(possibleUser)
 	w.Header().Set("Content-Type", "application/json")
