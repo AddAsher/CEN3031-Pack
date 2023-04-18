@@ -1,4 +1,8 @@
+<!--Since the slideshow component is generated after a successful search is made, I can try using the string
+    passed into the search bar to determine which slide show to use. -->
 <div class="slideshow-container">
+  <!--Essentially in line 5 my goal is to determine which images property to use from the search result since images
+  represents an array of strings that refer to -->
   <div class="slideshow-slide" *ngFor="let image of images; let i = index" [hidden]="currentSlideIndex !== i">
     <img [src]="image" alt="Slideshow Image">
   </div>
