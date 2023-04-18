@@ -1,13 +1,13 @@
 # Changes Made
-*Added user account registration functionality to the front end by connecting it to the backend's map structure made last sprint.
-*Changed our map to store a club struct that contained a club's description, leader, contact information, and hyperlink to any social media, with the key still being the club name.
-*Updated user struct to contain an
-*Added functions that allow users to register their club's on the website (clubAdd) 
-*Added the account registration functionality to our front end which writes to the map for a new user.
-*Successfully implemented a frontend page that displays club data by pulling from the club map.
-*Successfully implemeneted picture showcasing on the frontend through pictures specified for specific clubs.
-*Successfully implemented a logout function in the frontend
-*Added Backend testing for user's adding clubs
+* Added user account registration functionality to the front end by connecting it to the backend's map structure made last sprint.
+* Changed our map to store a club struct that contained a club's description, leader, contact information, and hyperlink to any social media, with the key still being the club name.
+* Updated user struct to contain an
+* Added functions that allow users to register their club's on the website (clubAdd) 
+* Added the account registration functionality to our front end which writes to the map for a new user.
+* Successfully implemented a frontend page that displays club data by pulling from the club map.
+* Successfully implemeneted picture showcasing on the frontend through pictures specified for specific clubs.
+* Successfully implemented a logout function in the frontend
+* Added Backend testing for user's adding clubs
 
 
 
