@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
@@ -34,15 +34,12 @@ export class LoginComponent {
     );
   }
 
-  goToHomePage(){
-    // Do some login logic here...
-
-
+  goToHomePage() {
     // Navigate to the home page
     this.router.navigate(['/home']);
   }
 
-  goToRegisterPage(){
+  goToRegisterPage() {
     // Do some login logic here...
 
     // Navigate to the home page

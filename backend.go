@@ -64,9 +64,10 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/registration", regHandler).Methods("POST")
 	r.HandleFunc("/login", loginHandler).Methods("POST")
-	r.HandleFunc("/home/get", getClubs).Methods("GET")
+	r.HandleFunc("/home/getClub", getClubs).Methods("GET")
 	r.HandleFunc("/home/add", clubAdd).Methods("POST")
 	r.HandleFunc("/home/like", likeClub).Methods("POST")
+	r.HandleFunc("/home/getUser", currentUser).Methods("GET")
 
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"http://localhost:4200"},
@@ -191,6 +192,8 @@ func newUserValid(n string, p string) string {
 		return "You cannot have a blank username!"
 	} else if !strings.Contains(n, "@ufl.edu") {
 		return "Your username must contain \"@ufl.edu\" at the end!"
+	} else if _, found := users[n]; found {
+		return "An account with this username already exists!"
 	}
 
 	if p == "" {

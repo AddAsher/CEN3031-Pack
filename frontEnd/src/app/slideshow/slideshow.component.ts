@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-slideshow',
@@ -15,6 +17,7 @@ export class SlideshowComponent {
     'assets/box_logo.jpg'
   ];
 
+  constructor(private authService: AuthService, private router: Router) { }
   //I'll have to create more arrays to store images for each club (10 total)
 
   currentSlideIndex = 0;

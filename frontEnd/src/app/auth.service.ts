@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 
 
 export interface User {
@@ -36,7 +37,7 @@ export class AuthService {
     }
 
     getClubs(): Observable<Map<string, Club>> {
-        const url = `${this.baseUrl}/home/get`;
+        const url = `${this.baseUrl}/home/getClub`;
         return this.http.get<Map<string, Club>>(url);
     }
 
@@ -44,5 +45,11 @@ export class AuthService {
         const url = `${this.baseUrl}/home/like`;
         const body = { username, clubname };
         return this.http.post(url, body);
+    }
+
+    getUser(): Observable<User> {
+        const url = `${this.baseUrl}/home/getUser`;
+        return this.http.get<User>(url);
+
     }
 }

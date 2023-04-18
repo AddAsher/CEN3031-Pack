@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SlideshowComponent } from '../slideshow/slideshow.component';
 import { ClubListComponent } from '../club-list/club-list.component';
+import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,11 +16,12 @@ export class HomePageComponent {
   searchResults: any[];
   welcomeMessage: string;
 
-  constructor(private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {
     this.searchTerm = "";
     this.searchResults = [];
     this.welcomeMessage = "Find the club that's right for you!";
   }
+
 
   performSearch() {
     //1. retrieve list of clubs stored in backend to be put into an array
@@ -32,4 +34,12 @@ export class HomePageComponent {
   Logout() {
     this.router.navigate(['']);
   }
+
+  logout() {
+    alert("You have successfully logged out")
+    this.router.navigate(['']);
+  }
+
+
+
 }
