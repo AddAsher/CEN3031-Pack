@@ -134,7 +134,7 @@ func clubAdd(w http.ResponseWriter, r *http.Request) {
 
 	// Add the new club to the clubList map
 	//new club valid
-	var valid string = newClubValid(clubData.Name, clubData.Description, clubData.Leader, clubData.Contact)
+	var valid string = newClubValid(clubData.Name, clubData.Description, clubData.Leader, clubData.Contact) // MARKED FOR LATER i dont think this works with the new setup
 	if valid != "Valid" {
 		http.Error(w, valid, http.StatusBadRequest)
 	} else {
@@ -145,7 +145,7 @@ func clubAdd(w http.ResponseWriter, r *http.Request) {
 
 	// Send a response indicating success
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(map[string]string{"message": "Club added successfully"})
+	json.NewEncoder(w).Encode(map[string]string{"message": "Club added successfully"}) 
 }
 
 func userIsValid(n string, p string) string {
@@ -166,7 +166,7 @@ func userIsValid(n string, p string) string {
 	}
 }
 
-func newClubValid(n string, d string, l string, c string) string {
+func newClubValid(n string, d string, l string, c string) string { //im gonna add the hyperlink to this section once revamped
 	if n == "" {
 		return "Club name required!"
 	} else if _, found := clubList[n]; found {
