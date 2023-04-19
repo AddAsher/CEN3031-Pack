@@ -8,26 +8,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./slideshow.component.css']
 })
 export class SlideshowComponent {
-  @Input()
-  clubName: string = "";
+  clubName: string;
 
   //example slideshow images
-  images = [
-    'assets/GoGators.jpg',
-    'assets/box_logo.jpg'
-  ];
-  images1=[];
-  images2=[];
-  images3=[];
-  images4=[];
-  images5=[];
-  images6=[];
-  images7=[];
-  images8=[];
-  images9=[];
+  images = ['assets/GoGators.jpg','assets/box_logo.jpg'];
 
-  constructor(private authService: AuthService, private router: Router) { }
-  //I'll have to create more arrays to store images for each club (10 total)
+  //actual images
+  images1=['assets/folder1/AdoptedStudentOrganization1.jpg'];
+  images2=['assets/folder2/AReasonToGive1.jpg','assets/folder2/AReasonToGive2.jpg','assets/folder2/AReasonToGive3.jpg'];
+  images3=['assets/folder3/AdventChristianFellowship1.jpg','assets/folder3/AdventChristianFellowship2.jpg','assets/folder3/AdventChristianFellowship3.jpg'];
+  images4=['assets/folder4/AdSociety1.jpg','assets/folder4/AdSociety.jpg','assets/folder4/AdSociety3.jpg'];
+  images5=[''];
+  images6=['assets/folder6/AlphaOmega1.jpg','assets/folder6/AlphaOmega1.jpg','assets/folder6/AlphaOmega1.jpg'];
+  images7=['assets/folder7/AquaticAnimalHealth1.jpg','assets/folder7/AquaticAnimalHealth2.jpg','assets/folder7/AquaticAnimalHealth3.jpg'];
+  images8=['assets/folder8/SocietyOfPCBuilding1.jpg','assets/folder8/SocietyOfPCBuilding2.jpg','assets/folder8/SocietyOfPCBuilding3.jpg'];
+  images9=['assets/folder9/3DPrintingClub1.png','assets/folder9/3DPrintingClub2.png','assets/folder9/3DPrintingClub3.png'];
+
+  constructor(private authService: AuthService, private router: Router) { 
+    this.clubName = "";
+  }
 
   currentSlideIndex = 0;
 
