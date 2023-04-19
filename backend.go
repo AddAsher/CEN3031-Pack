@@ -28,7 +28,6 @@ type Claims struct {
 }
 
 type Club struct {
-	//	Name		string `json:"name"`
 	Description string `json:"description"`
 	Leader      string `json:"leader"`
 	Contact     string `json:"contact"`
@@ -117,6 +116,7 @@ func clubAdd(w http.ResponseWriter, r *http.Request) {
 		Description string `json:"description"`
 		Leader      string `json:"leader"`
 		Contact     string `json:"contact"`
+		//Hyperlink string 'json::"hyperlink"'
 	}
 	err := json.NewDecoder(r.Body).Decode(&clubData)
 	if err != nil {
@@ -130,11 +130,12 @@ func clubAdd(w http.ResponseWriter, r *http.Request) {
 		Description: clubData.Description,
 		Leader:      clubData.Leader,
 		Contact:     clubData.Contact,
+		//Hyperlink clubData.Hyperlink
 	}
 
 	// Add the new club to the clubList map
 	//new club valid
-	var valid string = newClubValid(clubData.Name, clubData.Description, clubData.Leader, clubData.Contact) // MARKED FOR LATER i dont think this works with the new setup
+	var valid string = newClubValid(clubData.Name, clubData.Description, clubData.Leader, clubData.Contact) //HYPERLINK SHOULD BE ADDED HERE TOOO
 	if valid != "Valid" {
 		http.Error(w, valid, http.StatusBadRequest)
 	} else {
@@ -184,6 +185,9 @@ func newClubValid(n string, d string, l string, c string) string { //im gonna ad
 	} else if !strings.Contains(c, "@") {
 		return "Contact information must be a valid email!"
 	}
+	//if h == ""{
+		//return "Media link is required!"
+	//}
 
 	return "Valid"
 

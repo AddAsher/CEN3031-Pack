@@ -87,7 +87,7 @@ func TestNewUserValid(t *testing.T) {
 
 }
 
-func TestNewClubValid(t *testing.T) {
+func TestNewClubValid(t *testing.T) { //TODO WITH NEW PARAMETERS
 	if newClubValid("", "", "", "") == "Club name required!" {
 		t.Log("Empty club name check success")
 	} else {
