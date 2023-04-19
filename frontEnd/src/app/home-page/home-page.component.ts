@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SlideshowComponent } from '../slideshow/slideshow.component';
 import { ClubListComponent } from '../club-list/club-list.component';
-import { AuthService, User, NullableClub } from '../auth.service';
+import { AuthService, User, NullableClub, Club } from '../auth.service';
 import { Router } from '@angular/router';
 import { SharedService } from '../shared.service';
 
@@ -19,7 +19,7 @@ export class HomePageComponent implements OnInit {
   currUser: string;
   switch: boolean;
 
-  clubs: Map<string, NullableClub>;
+  clubs: Map<string, Club>
 
 
 
@@ -28,15 +28,13 @@ export class HomePageComponent implements OnInit {
     this.searchResults = [];
     this.welcomeMessage = "Find the club that's right for you!";
     this.currUser = "";
-    this.clubs = new Map<string, NullableClub>;
+    this.clubs = new Map<string, Club>();;
     this.switch = false;
   }
 
   ngOnInit(): void {
     this.getUsername();
-    this.sharedService.getSharedMap().subscribe(map => {
-      this.clubs = map;
-    });
+    this.getClubs();
   }
 
 
@@ -82,6 +80,18 @@ export class HomePageComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  getClubs() {
+    this.authService.getClubs().subscribe(
+      (response: Map<string, Club>) => {
+        this.clubs = response;
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
 }
