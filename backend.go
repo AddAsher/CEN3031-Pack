@@ -38,14 +38,13 @@ type Club struct {
 // Club clubs := []Club{}
 type User struct {
 	Password   string `json:"password"`
-	LikedClubs string `json:"likedClubs`
+	LikedClubs [10]string `json:"likedClubs"`
 }
-
 var clubList = make(map[string]Club)
 
 // var users = make(map[string]string)
 var users = map[string]User{
-	"Admin@ufl.edu": {"QWERTY1", "foo"},
+	"Admin@ufl.edu": {"QWERTY1", [10]string{}},
 }
 var currUser = "Admin@ufl.edu"
 
