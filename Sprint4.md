@@ -76,4 +76,4 @@ GET
 ### Request/Response Parameters
 Returns the current username of the logged in user from the backend
 ## Functions
-func currentUsername(w http.ResponseWriter, r \*http.Request) 
+func currentUsername(w http.ResponseWriter, r \*http.Request) - Returns currUsername
