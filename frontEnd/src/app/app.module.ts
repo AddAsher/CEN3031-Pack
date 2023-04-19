@@ -12,6 +12,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { SlideshowComponent } from './slideshow/slideshow.component';
 import { ClubListComponent } from './club-list/club-list.component';
 import { AddClubComponent } from './add-club/add-club/add-club.component';
+import { ClubBoxComponent } from './club-box/club-box.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AddClubComponent } from './add-club/add-club/add-club.component';
     HomePageComponent,
     RegistrationComponent,
     SlideshowComponent,
-    ClubListComponent
+    ClubListComponent,
+    ClubBoxComponent
     //AddClubComponent
   ],
   imports: [

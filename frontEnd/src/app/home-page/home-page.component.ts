@@ -27,11 +27,12 @@ export class HomePageComponent implements OnInit {
     this.searchResults = [];
     this.welcomeMessage = "Find the club that's right for you!";
     this.currUser = "";
+    this.clubs = new Map<string,Club>;
   }
 
   ngOnInit(): void {
     this.getUsername();
-    this.sharedService.sharedMap$.subscribe(map => {
+    this.sharedService.getSharedMap().subscribe(map => {
       this.clubs = map;
     });
   }
@@ -45,8 +46,18 @@ export class HomePageComponent implements OnInit {
     this.searchTerm=this.searchTerm.toLowerCase();
     for(let [key,value] of this.clubs){
       if(this.searchTerm === key.toLowerCase()){
-        console.log('Found key: ',key);
+        alert('Search term found');
+        this.setSelectedKey(key);
       }
+    }
+  }
+
+  setSelectedKey(key: string) {
+    const value = this.clubs.get(key);
+    if (value !== undefined){
+      this.sharedService.setSelectedPair(key, value);
+    }else{
+      alert('Variable of type "Club" was undefined');
     }
   }
 

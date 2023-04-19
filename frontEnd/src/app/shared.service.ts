@@ -9,9 +9,21 @@ import { Club } from './auth.service';
 })
 export class SharedService {
   private sharedMap = new Subject<Map<string, Club>>();
-  sharedMap$ = this.sharedMap.asObservable();
+  private selectedPair = new Subject<[string, Club]>;
 
   setSharedMap(map: Map<string, Club>) {
     this.sharedMap.next(map);
+  }
+
+  getSharedMap(){
+    return this.sharedMap.asObservable();
+  }
+
+  setSelectedPair(key: string, value: Club) {
+    this.selectedPair.next([key, value]);
+  }
+
+  getSelectedPair() {
+    return this.selectedPair.asObservable();
   }
 }
