@@ -47,8 +47,8 @@ export class AuthService {
         return this.http.post(url, body);
     }
 
-    getUser(): Observable<User> {
-        const url = `${this.baseUrl}/home/getUser`;
+    getUsername(): Observable<any> {
+        const url = `${this.baseUrl}/home/getUsername`;
         return this.http.get<User>(url);
 
     }

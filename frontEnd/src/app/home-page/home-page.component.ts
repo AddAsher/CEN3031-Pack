@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SlideshowComponent } from '../slideshow/slideshow.component';
 import { ClubListComponent } from '../club-list/club-list.component';
 import { AuthService, User } from '../auth.service';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
 
   //variables to be used to construct a search bar
   searchTerm: string;
@@ -22,11 +22,10 @@ export class HomePageComponent {
     this.searchResults = [];
     this.welcomeMessage = "Find the club that's right for you!";
     this.currUser = "";
-    this.getUser();
   }
 
   ngOnInit(): void {
-    this.getUser();
+    this.getUsername();
   }
 
 
@@ -43,10 +42,10 @@ export class HomePageComponent {
     this.router.navigate(['']);
   }
 
-  getUser() {
-    this.authService.getUser().subscribe(
-      (response: User) => {
-        this.currUser = response.username;
+  getUsername() {
+    this.authService.getUsername().subscribe(
+      (response: any) => {
+        this.currUser = response.slice(0, response.length - 8);
         console.log(response);
       },
       (error) => {
