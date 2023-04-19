@@ -146,7 +146,7 @@ func clubAdd(w http.ResponseWriter, r *http.Request) {
 
 	// Send a response indicating success
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(map[string]string{"message": "Club added successfully"}) 
+	json.NewEncoder(w).Encode(map[string]string{"message": "Club added successfully"})
 }
 
 func userIsValid(n string, p string) string {
@@ -186,7 +186,7 @@ func newClubValid(n string, d string, l string, c string) string { //im gonna ad
 		return "Contact information must be a valid email!"
 	}
 	//if h == ""{
-		//return "Media link is required!"
+	//return "Media link is required!"
 	//}
 
 	return "Valid"

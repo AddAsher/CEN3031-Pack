@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-slideshow',
@@ -8,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./slideshow.component.css']
 })
 export class SlideshowComponent {
-  clubName: string;
 
   //example slideshow images
   images = ['assets/GoGators.jpg','assets/box_logo.jpg'];
@@ -24,8 +24,16 @@ export class SlideshowComponent {
   images8=['assets/folder8/SocietyOfPCBuilding1.jpg','assets/folder8/SocietyOfPCBuilding2.jpg','assets/folder8/SocietyOfPCBuilding3.jpg'];
   images9=['assets/folder9/3DPrintingClub1.png','assets/folder9/3DPrintingClub2.png','assets/folder9/3DPrintingClub3.png'];
 
-  constructor(private authService: AuthService, private router: Router) { 
-    this.clubName = "";
+  club: [string,any];
+
+  constructor(private sharedService: SharedService){
+    this.club=["",null];
+  }
+
+  ngOnInit(){
+    this.sharedService.getSelectedPair().subscribe(pair => {
+      this.club = pair;
+    });
   }
 
   currentSlideIndex = 0;

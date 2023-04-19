@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-club',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-club.component.css']
 })
 export class AddClubComponent {
+  constructor(private router: Router){}
+
+  BackHome() {
+    this.router.navigate(['/home']);
+  }
+  Logout() {
+    this.router.navigate(['']);
+  }
 
 }
