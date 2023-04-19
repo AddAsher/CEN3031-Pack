@@ -35,7 +35,11 @@ type Club struct {
 	Hyperlink   string `json:"hyperlink"`
 }
 
-// Club clubs := []Club{}
+type NameAndPass struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
 type User struct {
 	Password   string `json:"password"`
 	LikedClubs [10]string `json:"likedClubs"`
