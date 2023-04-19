@@ -1,17 +1,17 @@
 // shared.service.ts
 
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { Club } from './auth.service';
+import { BehaviorSubject } from 'rxjs';
+import { NullableClub } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SharedService {
-  private sharedMap = new Subject<Map<string, Club>>();
-  private selectedPair = new Subject<[string, Club]>;
+  private sharedMap = new BehaviorSubject<Map<string, NullableClub>>(new Map<string, NullableClub>());
+  private selectedPair = new BehaviorSubject<[string, NullableClub]>(['', null]);
 
-  setSharedMap(map: Map<string, Club>) {
+  setSharedMap(map: Map<string, NullableClub>) {
     this.sharedMap.next(map);
   }
 
@@ -19,7 +19,7 @@ export class SharedService {
     return this.sharedMap.asObservable();
   }
 
-  setSelectedPair(key: string, value: Club) {
+  setSelectedPair(key: string, value: NullableClub) {
     this.selectedPair.next([key, value]);
   }
 

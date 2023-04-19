@@ -16,6 +16,8 @@ export interface Club {
     hyperlink: string
 }
 
+export type NullableClub = Club | null;
+
 @Injectable({
     providedIn: 'root'
 })

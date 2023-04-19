@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { SharedService } from '../shared.service';
-import { Club } from '../auth.service';
+import { NullableClub } from '../auth.service';
 
 @Component({
   selector: 'app-club-box',
