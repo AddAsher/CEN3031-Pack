@@ -27,7 +27,7 @@ type Claims struct {
 	ExpiresAt int64 `json:"exp"`
 }
 
-type Club struct { 
+type Club struct {
 	//	Name		string `json:"name"`
 	Description string `json:"description"`
 	Leader      string `json:"leader"`
@@ -47,7 +47,7 @@ var clubList = make(map[string]Club)
 var users = map[string]User{
 	"Admin@ufl.edu": {"QWERTY1", "foo"},
 }
-var currUser = "Admin"
+var currUser = "Admin@ufl.edu"
 
 // clubList["A Reason to Give"] = "Our goal is to help serve the homeless population in Gainesville by providing weekly lunches!"
 // clubList["Adventist Christian Fellowship"] = "Adventist Christian Fellowship is established for the purpose of representing the love of Jesus Christ. As a Christian Organization, we seek to spread the Advent Message and share the love of Jesus Christ to all those willing to receive it through open campus activities, Bible discussion, and other unique forms of fellowship. We show no preference or privilege on the basis of race, gender, sexual orientation or religious background."
@@ -80,7 +80,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-	
 }
 
 func (c *Claims) Valid() error {
@@ -102,9 +101,8 @@ func likeClub(w http.ResponseWriter, r *http.Request) {
 
 func currentUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(currUser)
+	json.NewEncoder(w).Encode(currUser[0 : len(currUser)-8])
 }
-
 
 func clubAdd(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")

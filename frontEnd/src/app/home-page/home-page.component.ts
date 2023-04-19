@@ -21,7 +21,12 @@ export class HomePageComponent {
     this.searchTerm = "";
     this.searchResults = [];
     this.welcomeMessage = "Find the club that's right for you!";
-    this.currUser = "Admin"
+    this.currUser = "";
+    this.getUser();
+  }
+
+  ngOnInit(): void {
+    this.getUser();
   }
 
 
@@ -49,4 +54,5 @@ export class HomePageComponent {
       }
     )
   }
+
 }
