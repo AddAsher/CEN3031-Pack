@@ -3,6 +3,7 @@ import { SlideshowComponent } from '../slideshow/slideshow.component';
 import { ClubListComponent } from '../club-list/club-list.component';
 import { AuthService, User, Club } from '../auth.service';
 import { Router } from '@angular/router';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-home-page',
@@ -17,9 +18,11 @@ export class HomePageComponent implements OnInit {
   welcomeMessage: string;
   currUser: string;
 
+  clubs: Map<string, Club>;
 
 
-  constructor(private authService: AuthService, private router: Router) {
+
+  constructor(private authService: AuthService, private router: Router, private sharedService: SharedService) {
     this.searchTerm = "";
     this.searchResults = [];
     this.welcomeMessage = "Find the club that's right for you!";
@@ -28,11 +31,11 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsername();
+    this.sharedService.sharedMap$.subscribe(map => {
+      this.clubs = map;
+    });
   }
 
-  receiver(event: Map<string, Club>){
-    console.log(event);
-  }
 
   performSearch() {
     //1. retrieve list of clubs stored in backend to be put into an array
@@ -40,6 +43,11 @@ export class HomePageComponent implements OnInit {
     //3. if found go from there
     //if not create a popup saying 'Club not yet in database'
     this.searchTerm=this.searchTerm.toLowerCase();
+    for(let [key,value] of this.clubs){
+      if(this.searchTerm === key.toLowerCase()){
+        console.log('Found key: ',key);
+      }
+    }
   }
 
   Logout() {

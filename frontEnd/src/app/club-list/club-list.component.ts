@@ -1,5 +1,6 @@
 import { AuthService, Club } from '../auth.service';
-import { Component, EventEmitter,Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-club-list',
@@ -9,9 +10,7 @@ import { Component, EventEmitter,Output } from '@angular/core';
 export class ClubListComponent {
   clubs: Map<string, Club> = new Map<string, Club>();
 
-  @Output() sender = new EventEmitter();
-
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private sharedService: SharedService) { }
 
   ngOnInit() {
     this.authService.getClubs().subscribe(
@@ -23,8 +22,7 @@ export class ClubListComponent {
         console.log(error);
       }
     );
-    
-    this.sender.emit(this.clubs);
+    this.sharedService.setSharedMap(this.clubs);
   }
 
 }
