@@ -14,7 +14,11 @@
 * Added more personalization through a getUsername function that showcases their name on the site.
 * Added backend tests for checking validity of a club as well as adding a club 
 
-
+# Backend Unit Tests
+Implemented TestNewClubValid in backend_test.go to ensure a new club listing meets proper requirements.
+Checks to ensure that the description, leader, contact, and hyperlink fields are all filled out for the club to be made.
+Checks if contact information is a valid email address.
+Checks to see if hyperlink is a valid URL (TO DO)
 
 
 
