@@ -52,7 +52,7 @@ loginHandler(w http.ResponseWriter, r \*http.Request) - Checks if provided usern
 
 ## Get Existing Club list
 ### Endpoint URL
-http://localhost:4200/home
+http://localhost:4200/getClub
 ### Method
 GET
 ### Request/Response Parameters
@@ -62,10 +62,18 @@ getClubs(w http.ResponseWriter, r \*http.Request) - Returns clubList map to the 
 
 ## Adding Club To Club List
 ### Endpoint URL
-http://localhost:4200/home
+http://localhost:4200/add
 ### Method
 POST
 ### Request/Response Parameters
 Receives a club name, descripition, leader, and contact information, and returns the clubList map.
 ### Functions:
 clubAdd(w http.ResponseWriter, r \*http.request) - Ensures that all passed in information is provided and checks for duplicates in the map. If these conditions are met, it adds the club and returns the map.
+
+## Retrieving current username from backend
+### Method
+GET
+### Request/Response Parameters
+Returns the current username of the logged in user from the backend
+## Functions
+func currentUsername(w http.ResponseWriter, r \*http.Request) 
