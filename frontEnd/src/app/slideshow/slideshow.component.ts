@@ -11,11 +11,20 @@ export class SlideshowComponent {
   @Input()
   clubName: string = "";
 
-  showNavigation = false;
+  //example slideshow images
   images = [
     'assets/GoGators.jpg',
     'assets/box_logo.jpg'
   ];
+  images1=[];
+  images2=[];
+  images3=[];
+  images4=[];
+  images5=[];
+  images6=[];
+  images7=[];
+  images8=[];
+  images9=[];
 
   constructor(private authService: AuthService, private router: Router) { }
   //I'll have to create more arrays to store images for each club (10 total)

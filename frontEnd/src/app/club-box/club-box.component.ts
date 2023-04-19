@@ -19,7 +19,4 @@ export class ClubBoxComponent {
       this.club = pair;
     });
   }
-
-  
-
 }

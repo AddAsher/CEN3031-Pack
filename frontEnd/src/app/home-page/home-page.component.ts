@@ -17,6 +17,7 @@ export class HomePageComponent implements OnInit {
   searchResults: any[];
   welcomeMessage: string;
   currUser: string;
+  switch: boolean;
 
   clubs: Map<string, Club>;
 
@@ -28,6 +29,7 @@ export class HomePageComponent implements OnInit {
     this.welcomeMessage = "Find the club that's right for you!";
     this.currUser = "";
     this.clubs = new Map<string,Club>;
+    this.switch = false;
   }
 
   ngOnInit(): void {
@@ -48,8 +50,10 @@ export class HomePageComponent implements OnInit {
       if(this.searchTerm === key.toLowerCase()){
         alert('Search term found');
         this.setSelectedKey(key);
+        this.switch = true;
       }
     }
+    alert('Club not yet in database');
   }
 
   setSelectedKey(key: string) {
