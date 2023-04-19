@@ -116,7 +116,7 @@ func clubAdd(w http.ResponseWriter, r *http.Request) {
 		Description string `json:"description"`
 		Leader      string `json:"leader"`
 		Contact     string `json:"contact"`
-		//Hyperlink string 'json::"hyperlink"'
+		Hyperlink     string `json:"hyperlink"`
 	}
 	err := json.NewDecoder(r.Body).Decode(&clubData)
 	if err != nil {
@@ -130,12 +130,12 @@ func clubAdd(w http.ResponseWriter, r *http.Request) {
 		Description: clubData.Description,
 		Leader:      clubData.Leader,
 		Contact:     clubData.Contact,
-		//Hyperlink clubData.Hyperlink
+		Hyperlink: clubData.Hyperlink,
 	}
 
 	// Add the new club to the clubList map
 	//new club valid
-	var valid string = newClubValid(clubData.Name, clubData.Description, clubData.Leader, clubData.Contact) //HYPERLINK SHOULD BE ADDED HERE TOOO
+	var valid string = newClubValid(clubData.Name, clubData.Description, clubData.Leader, clubData.Contact, clubData.Hyperlink) //HYPERLINK SHOULD BE ADDED HERE TOOO
 	if valid != "Valid" {
 		http.Error(w, valid, http.StatusBadRequest)
 	} else {
@@ -167,7 +167,7 @@ func userIsValid(n string, p string) string {
 	}
 }
 
-func newClubValid(n string, d string, l string, c string) string { //im gonna add the hyperlink to this section once revamped
+func newClubValid(n string, d string, l string, c string, h string) string { //im gonna add the hyperlink to this section once revamped
 	if n == "" {
 		return "Club name required!"
 	} else if _, found := clubList[n]; found {
@@ -185,9 +185,11 @@ func newClubValid(n string, d string, l string, c string) string { //im gonna ad
 	} else if !strings.Contains(c, "@") {
 		return "Contact information must be a valid email!"
 	}
-	//if h == ""{
-	//return "Media link is required!"
-	//}
+	if h == ""{
+	return "Media link is required!"
+	} else if !strings.Contains(h, "https://") {
+		return "Please enter a valid link"
+	}
 
 	return "Valid"
 

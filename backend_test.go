@@ -88,39 +88,50 @@ func TestNewUserValid(t *testing.T) {
 }
 
 func TestNewClubValid(t *testing.T) { //TODO WITH NEW PARAMETERS
-	if newClubValid("", "", "", "") == "Club name required!" {
+	if newClubValid("", "", "", "", "") == "Club name required!" {
 		t.Log("Empty club name check success")
 	} else {
 		t.Error("Empty club name check fail")
 	}
 	clubList["testclubforthetest"] = Club{"testdesc", "test name", "testemail@ufl.edu", "test.com"}
-	if newClubValid("testclubforthetest", "", "", "") == "This club already exists!" {
+	if newClubValid("testclubforthetest", "", "", "", "") == "This club already exists!" {
 		t.Log("Duplicate club check success")
 	} else {
 		t.Error("Duplicate club check failure")
 	}
-	if newClubValid("thisisanewclub", "", "", "") == "Descripition is required!" {
+	if newClubValid("thisisanewclub", "", "", "", "") == "Descripition is required!" {
 		t.Log("Empty description check success")
 	} else {
 		t.Error("Empty description check failure")
 	}
-	if newClubValid("thisisanewerclub", "randomstuffhere", "", "") == "Club founder is required!" {
+	if newClubValid("thisisanewerclub", "randomstuffhere", "", "", "") == "Club founder is required!" {
 		t.Log("Empty club founder check success")
 	} else {
 		t.Error("Empty club founder check failure")
 	}
-	if newClubValid("coolclub", "club information", "John Smith", "") == "Contact info is required!" {
+	if newClubValid("coolclub", "club information", "John Smith", "", "") == "Contact info is required!" {
 		t.Log("Empty contact information check success")
 	} else {
 		t.Error("Empty contact information check failure")
 	}
-	if newClubValid("coolclub", "club information", "John Smith", "johnsmithufl.edu") == "Contact information must be a valid email!" {
+	if newClubValid("coolclub", "club information", "John Smith", "johnsmithufl.edu", "") == "Contact information must be a valid email!" {
 		t.Log("Email format check success")
 	} else {
 		t.Error("Email format check failure")
 	}
+	if newClubValid("coolclub", "club information", "John Smith", "johnsmith@ufl.edu", "") == "Media link is required!" {
+		t.Log("Media link requirement check success")
+	} else {
+		t.Error("Media link requirement check failure")
+	}
 
-	if newClubValid("successfulclubtest", "testdescripition", "John Smith", "johnsmith@ufl.edu") == "Valid" {
+	if newClubValid("coolclub", "club information", "John Smith", "johnsmith@ufl.edu", "twitter.com/amonga") == "Please enter a valid link" {
+		t.Log("Valid link check success")
+	} else {
+		t.Error("Valid link check failure")
+	}
+
+	if newClubValid("successfulclubtest", "testdescripition", "John Smith", "johnsmith@ufl.edu", "https://www.randomsocialmedia.com") == "Valid" {
 		t.Log("Club creation success")
 	} else {
 		t.Error("Club creation failure")
@@ -128,10 +139,3 @@ func TestNewClubValid(t *testing.T) { //TODO WITH NEW PARAMETERS
 
 }
 
-//t.Run("No username", func(t *testing.T)){
-
-//	}
-
-//	if loginHandler("test@ufl.edu") == "Username is required!"{
-//		t.error("Username is required!")
-//	}
