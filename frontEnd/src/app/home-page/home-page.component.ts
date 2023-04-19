@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SlideshowComponent } from '../slideshow/slideshow.component';
 import { ClubListComponent } from '../club-list/club-list.component';
 import { AuthService, User, Club } from '../auth.service';
@@ -28,7 +28,7 @@ export class HomePageComponent implements OnInit {
     this.searchResults = [];
     this.welcomeMessage = "Find the club that's right for you!";
     this.currUser = "";
-    this.clubs = new Map<string,Club>;
+    this.clubs = new Map<string, Club>;
     this.switch = false;
   }
 
@@ -45,9 +45,9 @@ export class HomePageComponent implements OnInit {
     //2. search that array for the name if it is present
     //3. if found go from there
     //if not create a popup saying 'Club not yet in database'
-    this.searchTerm=this.searchTerm.toLowerCase();
-    for(let [key,value] of this.clubs){
-      if(this.searchTerm === key.toLowerCase()){
+    this.searchTerm = this.searchTerm.toLowerCase();
+    for (let [key, value] of this.clubs) {
+      if (this.searchTerm === key.toLowerCase()) {
         alert('Search term found');
         this.setSelectedKey(key);
         this.switch = true;
@@ -58,9 +58,9 @@ export class HomePageComponent implements OnInit {
 
   setSelectedKey(key: string) {
     const value = this.clubs.get(key);
-    if (value !== undefined){
+    if (value !== undefined) {
       this.sharedService.setSelectedPair(key, value);
-    }else{
+    } else {
       alert('Variable of type "Club" was undefined');
     }
   }
@@ -70,10 +70,7 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  logout() {
-    alert("You have successfully logged out");
-    this.router.navigate(['']);
-  }
+
 
   getUsername() {
     this.authService.getUsername().subscribe(
