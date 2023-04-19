@@ -75,5 +75,5 @@ clubAdd(w http.ResponseWriter, r \*http.request) - Ensures that all passed in in
 GET
 ### Request/Response Parameters
 Returns the current username of the logged in user from the backend
-## Functions
+### Functions
 func currentUsername(w http.ResponseWriter, r \*http.Request) - Returns currUsername
