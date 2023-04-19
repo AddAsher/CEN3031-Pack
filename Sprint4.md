@@ -1,15 +1,24 @@
 # Changes Made
 * Added user account registration functionality to the front end by connecting it to the backend's map structure made last sprint.
-* Changed our map to store a club struct that contained a club's description, leader, contact information, and hyperlink to any social media, with the key still being the club name.
-* Updated user struct to contain an
+* Changed club map to store a club struct that contained a club's description, leader, contact information, and hyperlink to any social media, with the key still being the club name.
+* Front end implementation for account registration
+* Updated user struct to contain an array of clubs they have favorited.
 * Added functions that allow users to register their club's on the website (clubAdd) 
 * Added the account registration functionality to our front end which writes to the map for a new user.
 * Successfully implemented a frontend page that displays club data by pulling from the club map.
 * Successfully implemeneted picture showcasing on the frontend through pictures specified for specific clubs.
 * Successfully implemented a logout function in the frontend
 * Added Backend testing for user's adding clubs
+* Added a like club function, which allows a user to add a club to a list of favorites
+* Added a like club button to the front end so user's are able to easily add liked clubs
+* Added more personalization through a getUsername function that showcases their name on the site.
+* Added backend tests for checking validity of a club as well as adding a club 
 
-
+# Backend Unit Tests
+Implemented TestNewClubValid in backend_test.go to ensure a new club listing meets proper requirements.
+Checks to ensure that the description, leader, contact, and hyperlink fields are all filled out for the club to be made.
+Checks if contact information is a valid email address.
+Checks to see if hyperlink is a valid URL (TO DO)
 
 
 

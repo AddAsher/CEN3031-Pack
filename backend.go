@@ -27,27 +27,30 @@ type Claims struct {
 	ExpiresAt int64 `json:"exp"`
 }
 
-type Club struct { 
-	//	Name		string `json:"name"`
+type Club struct {
 	Description string `json:"description"`
 	Leader      string `json:"leader"`
 	Contact     string `json:"contact"`
 	Hyperlink   string `json:"hyperlink"`
 }
 
-// Club clubs := []Club{}
+type NameAndPass struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
 type User struct {
-	Password   string `json:"password"`
-	LikedClubs string `json:"likedClubs`
+	Password   string     `json:"password"`
+	LikedClubs [10]string `json:"likedClubs"`
 }
 
 var clubList = make(map[string]Club)
 
 // var users = make(map[string]string)
 var users = map[string]User{
-	"Admin@ufl.edu": {"QWERTY1", "foo"},
+	"Admin@ufl.edu": {"QWERTY1", [10]string{}},
 }
-var currUser = "Admin"
+var currUsername = "Admin@ufl.edu"
 
 // clubList["A Reason to Give"] = "Our goal is to help serve the homeless population in Gainesville by providing weekly lunches!"
 // clubList["Adventist Christian Fellowship"] = "Adventist Christian Fellowship is established for the purpose of representing the love of Jesus Christ. As a Christian Organization, we seek to spread the Advent Message and share the love of Jesus Christ to all those willing to receive it through open campus activities, Bible discussion, and other unique forms of fellowship. We show no preference or privilege on the basis of race, gender, sexual orientation or religious background."
@@ -58,7 +61,7 @@ var currUser = "Admin"
 // clubList["The Society of PC Building"] = "The Society of PC Building's primary purpose is to provide students with an outlet to learn more about building PCs, regardless of experience, to foster knowledge and confidence in its members, and provide club members with hands-on experiences building PCs. The Society of PC Building will host a variety of events, meetings, and workshops for members to engage with each other and campus."
 // clubList["3D Printing Club"] = "The 3D Printing Club is established for the purpose of educating UF students on the world of 3D printing and how 3D printing and related skills can be used within their education, professionally, and leisurely. Additionally, projects will be set in place to address issues seen within the University of Florida, the local Gainesville area, and nationally."
 func main() {
-	users["Beta"] = User{"Charlie", "Charles"}
+	users["Beta"] = User{"Charlie", [10]string{"Charles"}}
 	clubList["Adopted Student Organization"] = Club{"The purpose of the organization is to create a supportive community for all adoptees and those interested in learning more about adoption. We will host various events throughout the year as an opportunity to share our experiences and educate about adoption through meaningful discussions. We will also participate in related philanthropic efforts to support adoptees and children in foster care in the Gainesville community and around the world.", "Krista Marrocco", "krista.marrocco@ufl.edu", "https://orgs.studentinvolvement.ufl.edu/Organization/adopted-student-organization"}
 	clubList["fooclub"] = Club{"foo", "Mr. Foo", "foofy@gmail.com", "foofy.com"}
 	r := mux.NewRouter()
@@ -67,7 +70,7 @@ func main() {
 	r.HandleFunc("/home/getClub", getClubs).Methods("GET")
 	r.HandleFunc("/home/add", clubAdd).Methods("POST")
 	r.HandleFunc("/home/like", likeClub).Methods("POST")
-	r.HandleFunc("/home/getUser", currentUser).Methods("GET")
+	r.HandleFunc("/home/getUsername", currentUsername).Methods("GET")
 
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"http://localhost:4200"},
@@ -80,7 +83,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-	
 }
 
 func (c *Claims) Valid() error {
@@ -100,11 +102,10 @@ func likeClub(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(clubList)
 }
 
-func currentUser(w http.ResponseWriter, r *http.Request) {
+func currentUsername(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(currUser)
+	json.NewEncoder(w).Encode(currUsername)
 }
-
 
 func clubAdd(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -115,6 +116,7 @@ func clubAdd(w http.ResponseWriter, r *http.Request) {
 		Description string `json:"description"`
 		Leader      string `json:"leader"`
 		Contact     string `json:"contact"`
+		//Hyperlink string 'json::"hyperlink"'
 	}
 	err := json.NewDecoder(r.Body).Decode(&clubData)
 	if err != nil {
@@ -128,11 +130,12 @@ func clubAdd(w http.ResponseWriter, r *http.Request) {
 		Description: clubData.Description,
 		Leader:      clubData.Leader,
 		Contact:     clubData.Contact,
+		//Hyperlink clubData.Hyperlink
 	}
 
 	// Add the new club to the clubList map
 	//new club valid
-	var valid string = newClubValid(clubData.Name, clubData.Description, clubData.Leader, clubData.Contact)
+	var valid string = newClubValid(clubData.Name, clubData.Description, clubData.Leader, clubData.Contact) //HYPERLINK SHOULD BE ADDED HERE TOOO
 	if valid != "Valid" {
 		http.Error(w, valid, http.StatusBadRequest)
 	} else {
@@ -143,7 +146,7 @@ func clubAdd(w http.ResponseWriter, r *http.Request) {
 
 	// Send a response indicating success
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(map[string]string{"message": "Club added successfully"})
+	json.NewEncoder(w).Encode(map[string]string{"message": "Club added successfully"}) 
 }
 
 func userIsValid(n string, p string) string {
@@ -164,7 +167,7 @@ func userIsValid(n string, p string) string {
 	}
 }
 
-func newClubValid(n string, d string, l string, c string) string {
+func newClubValid(n string, d string, l string, c string) string { //im gonna add the hyperlink to this section once revamped
 	if n == "" {
 		return "Club name required!"
 	} else if _, found := clubList[n]; found {
@@ -182,6 +185,9 @@ func newClubValid(n string, d string, l string, c string) string {
 	} else if !strings.Contains(c, "@") {
 		return "Contact information must be a valid email!"
 	}
+	//if h == ""{
+		//return "Media link is required!"
+	//}
 
 	return "Valid"
 
@@ -213,7 +219,7 @@ func regHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Received register request")
 	// Parse request body
 	decoder := json.NewDecoder(r.Body)
-	var newUser User
+	var newUser NameAndPass
 	err := decoder.Decode(&newUser)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
@@ -221,14 +227,14 @@ func regHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	var valid string = newUserValid(newUser.Password, newUser.LikedClubs)
+	var valid string = newUserValid(newUser.Username, newUser.Password)
 	if valid != "Valid" {
 		http.Error(w, valid, http.StatusBadRequest)
 	} else {
 		fmt.Println("Register Successful")
 	}
 
-	users[newUser.Password] = User{newUser.LikedClubs, ""}
+	users[newUser.Username] = User{newUser.Password, [10]string{}}
 
 	UsersJSON, _ := json.Marshal(newUser)
 	w.Header().Set("Content-Type", "application/json")
@@ -243,7 +249,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Received login request")
 	// Parse request body
 	decoder := json.NewDecoder(r.Body)
-	var possibleUser User
+	var possibleUser NameAndPass
 	err := decoder.Decode(&possibleUser)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
@@ -251,14 +257,14 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	var valid string = userIsValid(possibleUser.Password, possibleUser.LikedClubs)
+	var valid string = userIsValid(possibleUser.Username, possibleUser.Password)
 	if valid != "Valid" {
 		http.Error(w, valid, http.StatusBadRequest)
 	} else {
 		fmt.Println("Login Successful")
 	}
 
-	users[possibleUser.Password] = User{possibleUser.Password, possibleUser.LikedClubs}
+	currUsername = possibleUser.Username
 
 	UsersJSON, _ := json.Marshal(possibleUser)
 	w.Header().Set("Content-Type", "application/json")
