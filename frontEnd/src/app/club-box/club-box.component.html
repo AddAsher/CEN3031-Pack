@@ -8,14 +8,15 @@
 </div> -->
 <!--If the club object is successfully returned I want to be able to access it's data members of -->
 
-<div *ngIf = "club">
-    <div class = left>
+<div *ngIf="club">
+    <div class=left>
         <app-slideshow></app-slideshow>
     </div>
-    <div class = right>
+    <div class=right>
         <a href={{club[1].hyprlink}}><strong>club{{0}}</strong></a>
         <p>Description: {{ club[1].description }}</p>
-        <p>Email: {{club[1].leader}}</p>
+        <p>Email: {{club[1].contact}}</p>
+        <p>Leader: {{club[1].leader}}</p>
         <p>Hyperlink: {{club[1].hyperlink}}</p>
     </div>
 </div>

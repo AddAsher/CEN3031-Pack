@@ -1,6 +1,7 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { SharedService } from '../shared.service';
-import { NullableClub } from '../auth.service';
+import { NullableClub, Club } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-club-box',
@@ -8,13 +9,13 @@ import { NullableClub } from '../auth.service';
   styleUrls: ['./club-box.component.css']
 })
 export class ClubBoxComponent {
-  club: [string,any];
+  club: [string, any];
 
-  constructor(private sharedService: SharedService){
-    this.club=["",null];
+  constructor(private sharedService: SharedService) {
+    this.club = ["", null];
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.sharedService.getSelectedPair().subscribe(pair => {
       this.club = pair;
     });

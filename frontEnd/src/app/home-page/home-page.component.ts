@@ -55,8 +55,8 @@ export class HomePageComponent implements OnInit {
       alert('Search term found');
       this.switch = true;
       const value = this.clubs.get(this.searchBar);
-      if (value !== undefined){
-        this.sharedService.setSelectedPair(this.searchBar,value);
+      if (value !== undefined) {
+        this.sharedService.setSelectedPair(this.searchBar, value);
       }
     }
     else {
@@ -105,7 +105,6 @@ export class HomePageComponent implements OnInit {
             } as Club);
           }
         }
-        console.log(this.clubs.get("fooclub")?.hyperlink)
       },
       (error) => {
         console.log(error);
