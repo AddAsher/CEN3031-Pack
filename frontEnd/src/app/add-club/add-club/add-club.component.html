@@ -5,29 +5,34 @@
             <h1 class="title">Fill in the criteria below</h1>
         </div>
         <div class="right-content">
-            <button type="button" (click)="goToHomePage()"class="btn-primary">Home</button>
+            <button type="button" (click)="goToHomePage()" class="btn-primary">Home</button>
         </div>
     </div>
 </header>
 
 <body>
     <div class="searchBar">
-        <div class="form-group">
-                <label for="input1"><b>Enter the name of your club:</b></label>
-                <input type="text" id="input1" name="input1">
+        <form>
+            <div class="form-group">
+                <label for="name"><b>Enter the name of your club:</b></label>
+                <input type="text" id="name" name="name" [(ngModel)]="name">
 
-                <label for="input2"><b>Enter a description of your club:</b></label>
-                <input type="text" id="input2" name="input2">
+                <label for="description"><b>Enter a description of your club:</b></label>
+                <input type="text" id="description" name="description" [(ngModel)]="description">
 
-                <label for="input3"><b>Enter an email for contact:</b></label>
-                <input type="text" id="input3" name="input3">
-                
-                <label for="input4"><b>Leave a link to your club's socials page:</b></label>
-                <input type="text" id="input4" name="input4">
-        </div>
-        <div class="form-actions">
-            <button type="button" (click)="SubmitInfo()" class="btn-primary">Submit</button>
-        </div>
+                <label for="contact"><b>Enter an email for contact:</b></label>
+                <input type="text" id="contact" name="contact" [(ngModel)]="contact">
+
+                <label for="leader"><b>Enter a name for the leader:</b></label>
+                <input type="text" id="leader" name="leader" [(ngModel)]="leader">
+
+                <label for="hyperlink"><b>Leave a link to your club's socials page:</b></label>
+                <input type="text" id="hyperlink" name="hyperlink" [(ngModel)]="hyperlink">
+            </div>
+            <div class="form-actions">
+                <button type="button" (click)="SubmitInfo()" class="btn-primary">Submit</button>
+            </div>
+        </form>
     </div>
-    
+
 </body>

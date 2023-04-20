@@ -57,17 +57,17 @@ func main() {
 	clubList["Adopted Student Organization"] = Club{"The purpose of the organization is to create a supportive community for all adoptees and those interested in learning more about adoption. We will host various events throughout the year as an opportunity to share our experiences and educate about adoption through meaningful discussions. We will also participate in related philanthropic efforts to support adoptees and children in foster care in the Gainesville community and around the world.", "Krista Marrocco", "krista.marrocco@ufl.edu", "https://orgs.studentinvolvement.ufl.edu/Organization/adopted-student-organization"}
 	clubList["fooclub"] = Club{"foo", "Mr. Foo", "foofy@gmail.com", "foofy.com"}
 	clubList["A Reason to Give"] = Club{"Our goal is to help serve the homeless population in Gainesville by providing weekly lunches!", "Evan Miller", "reasontogive@gmail.com", "https://www.instagram.com/areasontogive/"}
- clubList["Adventist Christian Fellowship"] = Club{"Adventist Christian Fellowship is established for the purpose of representing the love of Jesus Christ. As a Christian Organization, we seek to spread the Advent Message and share the love of Jesus Christ to all those willing to receive it through open campus activities, Bible discussion, and other unique forms of fellowship. We show no preference or privilege on the basis of race, gender, sexual orientation or religious background.", "Wildine Saintil", "fdatilus@gmail.com", "https://www.flowcode.com/page/ufacf" }
- clubList["Advertising Society"] = Club{"Ad Society is the advertising student organization at the University of Florida. Open to all majors, Ad Society holds general body meetings with guest speakers from the industry, takes trips to visit advertising agencies in various cities, and hosts workshops for students professional improvement.", "Alexis Braun", "UFLadsociety@gmail.com", "https://www.instagram.com/ufadsociety/"}
- clubList["Alpha Omega - Jewish Dental Society"] = Club{"To enhance the dental profession and lives of dental professionals worldwide by promoting and supporting ideals of global oral health, education, and the bonds of fraternity.","Polly Flaxman", "flaxman.polly@ufl.edu", "https://www.instagram.com/alphaomegauf/"}
- clubList["Aquatic Animal Health Club"] = Club{"The Aquatic Animal Health Club is a student-run organization dedicated to supplementing University of Florida’s College of Veterinary Medicine (UFCVM) curriculum by providing educational and networking opportunities in the field of aquatic animal medicine.", "Cole Ferreira", "ferreiracole@ufl.edu", "https://www.instagram.com/ufaquaticanimalhealthclub/"}
- clubList["The Society of PC Building"] = Club{"The Society of PC Building's primary purpose is to provide students with an outlet to learn more about building PCs, regardless of experience, to foster knowledge and confidence in its members, and provide club members with hands-on experiences building PCs. The Society of PC Building will host a variety of events, meetings, and workshops for members to engage with each other and campus.", "Christopher Tressler", "kingchristoT@gmail.com", "https://www.instagram.com/pcbuildinguf/"}
- clubList["3D Printing Club"] = Club{"The 3D Printing Club is established for the purpose of educating UF students on the world of 3D printing and how 3D printing and related skills can be used within their education, professionally, and leisurely. Additionally, projects will be set in place to address issues seen within the University of Florida, the local Gainesville area, and nationally.", "Rita Hippe", "ritahippe3343@gmail.com", "https://linktr.ee/3DPrintClub"}
+	clubList["Adventist Christian Fellowship"] = Club{"Adventist Christian Fellowship is established for the purpose of representing the love of Jesus Christ. As a Christian Organization, we seek to spread the Advent Message and share the love of Jesus Christ to all those willing to receive it through open campus activities, Bible discussion, and other unique forms of fellowship. We show no preference or privilege on the basis of race, gender, sexual orientation or religious background.", "Wildine Saintil", "fdatilus@gmail.com", "https://www.flowcode.com/page/ufacf"}
+	clubList["Advertising Society"] = Club{"Ad Society is the advertising student organization at the University of Florida. Open to all majors, Ad Society holds general body meetings with guest speakers from the industry, takes trips to visit advertising agencies in various cities, and hosts workshops for students professional improvement.", "Alexis Braun", "UFLadsociety@gmail.com", "https://www.instagram.com/ufadsociety/"}
+	clubList["Alpha Omega - Jewish Dental Society"] = Club{"To enhance the dental profession and lives of dental professionals worldwide by promoting and supporting ideals of global oral health, education, and the bonds of fraternity.", "Polly Flaxman", "flaxman.polly@ufl.edu", "https://www.instagram.com/alphaomegauf/"}
+	clubList["Aquatic Animal Health Club"] = Club{"The Aquatic Animal Health Club is a student-run organization dedicated to supplementing University of Florida’s College of Veterinary Medicine (UFCVM) curriculum by providing educational and networking opportunities in the field of aquatic animal medicine.", "Cole Ferreira", "ferreiracole@ufl.edu", "https://www.instagram.com/ufaquaticanimalhealthclub/"}
+	clubList["The Society of PC Building"] = Club{"The Society of PC Building's primary purpose is to provide students with an outlet to learn more about building PCs, regardless of experience, to foster knowledge and confidence in its members, and provide club members with hands-on experiences building PCs. The Society of PC Building will host a variety of events, meetings, and workshops for members to engage with each other and campus.", "Christopher Tressler", "kingchristoT@gmail.com", "https://www.instagram.com/pcbuildinguf/"}
+	clubList["3D Printing Club"] = Club{"The 3D Printing Club is established for the purpose of educating UF students on the world of 3D printing and how 3D printing and related skills can be used within their education, professionally, and leisurely. Additionally, projects will be set in place to address issues seen within the University of Florida, the local Gainesville area, and nationally.", "Rita Hippe", "ritahippe3343@gmail.com", "https://linktr.ee/3DPrintClub"}
 	r := mux.NewRouter()
 	r.HandleFunc("/registration", regHandler).Methods("POST")
 	r.HandleFunc("/login", loginHandler).Methods("POST")
 	r.HandleFunc("/home/getClub", getClubs).Methods("GET")
-	r.HandleFunc("/home/add", clubAdd).Methods("POST")
+	r.HandleFunc("/add-club", clubAdd).Methods("POST")
 	r.HandleFunc("/home/like", likeClub).Methods("POST")
 	r.HandleFunc("/home/getUsername", currentUsername).Methods("GET")
 
@@ -115,7 +115,7 @@ func clubAdd(w http.ResponseWriter, r *http.Request) {
 		Description string `json:"description"`
 		Leader      string `json:"leader"`
 		Contact     string `json:"contact"`
-		Hyperlink     string `json:"hyperlink"`
+		Hyperlink   string `json:"hyperlink"`
 	}
 	err := json.NewDecoder(r.Body).Decode(&clubData)
 	if err != nil {
@@ -129,7 +129,7 @@ func clubAdd(w http.ResponseWriter, r *http.Request) {
 		Description: clubData.Description,
 		Leader:      clubData.Leader,
 		Contact:     clubData.Contact,
-		Hyperlink: clubData.Hyperlink,
+		Hyperlink:   clubData.Hyperlink,
 	}
 
 	// Add the new club to the clubList map
@@ -184,8 +184,8 @@ func newClubValid(n string, d string, l string, c string, h string) string { //i
 	} else if !strings.Contains(c, "@") {
 		return "Contact information must be a valid email!"
 	}
-	if h == ""{
-	return "Media link is required!"
+	if h == "" {
+		return "Media link is required!"
 	} else if !strings.Contains(h, "https://") {
 		return "Please enter a valid link"
 	}

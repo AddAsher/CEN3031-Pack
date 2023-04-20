@@ -16,6 +16,14 @@ export interface Club {
     hyperlink: string
 }
 
+export interface clubData {
+    name: string,
+    description: string;
+    leader: string;
+    contact: string;
+    hyperlink: string
+}
+
 export type NullableClub = Club | null;
 
 @Injectable({
@@ -52,6 +60,11 @@ export class AuthService {
     getUsername(): Observable<any> {
         const url = `${this.baseUrl}/home/getUsername`;
         return this.http.get<User>(url);
+    }
 
+    addClub(name: string, description: string, contact: string, leader: string, hyperlink: string) {
+        const url = `${this.baseUrl}/add-club`;
+        const body = { name, description, contact, leader, hyperlink };
+        return this.http.post<clubData>(url, body);
     }
 }
