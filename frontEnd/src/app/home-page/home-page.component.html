@@ -1,51 +1,41 @@
-<html>
-
-<head>
-    <style>
-
-    </style>
-</head>
+<header>
+    <div class="homepageBar">
+        <div class="left-content">
+            <img src="assets/box_logo.jpg" alt="PACK logo" class="logo">
+            <h1 class="title">{{welcomeMessage}}</h1>
+        </div>
+        <div class="right-content">
+            {{currUser}}
+            <button type="button" (click)="Logout()" class="btn-primary">Log out</button>
+        </div>
+    </div>
+    <div class="homepageBar">
+        <div class="left-content">
+            
+        </div>
+        <div class="right-content">
+            <button type="button" (click)="goToAddPage()"class="btn-primary">Add Club</button>
+            <button type="button" (click)="goToHomePage()"class="btn-primary">Home</button>
+        </div>
+    </div>
+</header>
 
 <body>
-    <header>
-        <div class="homeBar">
-            <h1><em>Find the club that's right for you</em></h1>
-
-            <div class="logoutBtn">
-                <div>{{currUser}} </div>
-                <input type="button" (click)="Logout()" value="Logout">
-            </div>
+    <div class="searchBar">
+        <div class="form-group">
+            <label for="searchBar"><b>Search for a club here:</b></label>
+            <input type="text" id="searchBar" name="searchBar" [(ngModel)]="searchBar"><br><br>
         </div>
-    </header>
-    <main>
-        <div class="searchBar">
-            <form>
-                <label for="searchBar"><b>Search for a club here:</b></label>
-                <input type="text" id="searchBar" [(ngModel)]="searchTerm">
-                <input type="button" (click)="performSearch()" value="Search">
-            </form>
+        <div class="form-actions">
+            <button type="button" class="btn-primary" (click)="performSearch()">Search</button>
         </div>
-        <!-- <app-slideshow></app-slideshow> -->
-        <!-- <div class="club-list-container">
-                <app-club-list hidden (sender) ="receiver($event)"></app-club-list>
-            </div> -->
-        <div *ngIf="switch">
-            <app-club-box></app-club-box>
-        </div>
-    </main>
+    </div>
 
-    <a href="https://www.youtube.com/watch?v=pbi5PQbPQqs" target="_blank">Click me stupid</a>
-
-    <footer></footer>
+    <!-- <app-slideshow></app-slideshow> -->
+    <!-- <div class="club-list-container">
+            <app-club-list hidden (sender) ="receiver($event)"></app-club-list>
+        </div> -->
+    <div *ngIf="switch">
+        <app-club-box></app-club-box>
+    </div>
 </body>
-
-</html>
-
-
-<!--Home page should aim to have the following functionality
-    1. Feature a search bar for a user to search for the name of a specific club
-    2. Display some of the clubs (5-10) with hyperlinks built into their names to support navigation to their external site
-    3. Include a text description of the club and its purpose along with a picture of events
-    4. Nice visuals to give it a clean look (I'm thinking add a simple slideshow of 3 images for each club with
-    buttons that allow a user to click through them)
--->
