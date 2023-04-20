@@ -16,6 +16,9 @@ export class AddClubComponent {
   Logout() {
     this.router.navigate(['']);
   }
+  goToHomePage() {
+    this.router.navigate(['/home']);
+  }
   SubmitInfo() {
     throw new Error('Method not implemented.');
   }

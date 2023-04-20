@@ -1,0 +1,108 @@
+* {
+box-sizing: border-box;
+}
+
+body {
+margin: 0;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 100vh;
+
+background-image: url('./add_background.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+.homepageBar {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 10px;
+background-color: #0021A5;
+color: #FFF;
+}
+
+.left-content {
+display: flex;
+align-items: center;
+}
+
+.right-content {
+display: flex;
+align-items: center;
+margin-left: 15px;
+}
+
+.logo {
+height: 50px;
+margin-right: 10px;
+}
+
+.title {
+font-size: 24px;
+margin: 0;
+}
+
+
+.form{
+margin-bottom: 20px;
+}
+
+.form-group {
+margin-bottom: 20px;
+}
+
+.form-actions {
+display: flex;
+justify-content: space-between;
+}
+
+
+.searchBar{
+width: 100%;
+max-width: 600px;
+padding: 20px;
+background-color: #F6F6F6;
+position: absolute;
+top: 20%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+input[type="text"]{
+width: 100%;
+padding: 8px 12px;
+border: 2px solid #CCC;
+border-radius: 5px;
+font-size: 18px;
+}
+
+.btn-primary,
+.btn-secondary {
+padding: 10px 20px;
+font-size: 18px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+color: #FFF;
+margin-left: 5px;
+}
+
+.btn-primary {
+background-color: #FF7F00;
+}
+
+.btn-secondary {
+background-color: #0021A5;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+opacity: 0.8;
+}
+
+.btn-primary + .btn-primary {
+margin-left: 20px; /* add margin between buttons */
+}
