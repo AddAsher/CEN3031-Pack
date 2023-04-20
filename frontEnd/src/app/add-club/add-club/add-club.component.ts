@@ -10,12 +10,6 @@ export class AddClubComponent {
 
   constructor(private router: Router){}
 
-  BackHome() {
-    this.router.navigate(['/home']);
-  }
-  Logout() {
-    this.router.navigate(['']);
-  }
   goToHomePage() {
     this.router.navigate(['/home']);
   }
