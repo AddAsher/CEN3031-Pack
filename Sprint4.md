@@ -72,7 +72,7 @@ clubAdd(w http.ResponseWriter, r \*http.request) - Ensures that all passed in in
 
 ## Retrieving current username from backend
 ## Endpoint URL
-/home/getUsername
+http://localhost:4200/home/getUsername
 ### Method
 GET
 ### Request/Response Parameters
