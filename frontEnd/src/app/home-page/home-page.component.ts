@@ -4,7 +4,6 @@ import { ClubListComponent } from '../club-list/club-list.component';
 import { AuthService, User, NullableClub, Club } from '../auth.service';
 import { Router } from '@angular/router';
 import { SharedService } from '../shared.service';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home-page',
@@ -14,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 export class HomePageComponent implements OnInit {
 
   //variables to be used to construct a search bar
-  searchBar: string = "";
+  searchBar: string = '';
   welcomeMessage: string;
   currUser: string;
   switch: boolean;
@@ -55,19 +54,16 @@ export class HomePageComponent implements OnInit {
     if (this.clubs.has(this.searchBar)) {
       alert('Search term found');
       this.switch = true;
+      const value = this.clubs.get(this.searchBar);
+      if (value !== undefined){
+        this.sharedService.setSelectedPair(this.searchBar,value);
+      }
     }
     else {
       alert('Club not yet in database');
     }
   }
-  setSelectedKey(key: string) {
-    const value = this.clubs.get(key);
-    if (value !== undefined) {
-      this.sharedService.setSelectedPair(key, value);
-    } else {
-      alert('Variable of type "Club" was undefined');
-    }
-  }
+
 
   Logout() {
     alert("Thank you for using our website. \nHave a great day!");
