@@ -55,31 +55,31 @@ func TestNewUserValid(t *testing.T) {
 		t.Error("@UFL.EDU check failure")
 	}
 
-	if newUserValid("Admin@ufl.edu", "") == "You cannot have a blank password!" {
+	if newUserValid("Admin1@ufl.edu", "") == "You cannot have a blank password!" {
 		t.Log("Blank password check success")
 	} else {
 		t.Error("Blank password check failure")
 	}
-
-	if newUserValid("Admin@ufl.edu", "") == "You cannot have a blank password!" {
-		t.Log("Blank password check success")
+	if newUserValid("Admin@ufl.edu", "") == "An account with this username already exists!" {
+		t.Log("Duplicate account check success")
 	} else {
-		t.Error("Blank password check failure")
+		t.Error("Duplicate account check failure")
 	}
 
-	if newUserValid("Admin@ufl.edu", "asd") == "Your password must be at least 6 characters long!" {
+
+	if newUserValid("Admin1@ufl.edu", "asd") == "Your password must be at least 6 characters long!" {
 		t.Log("Password length check success")
 	} else {
 		t.Error("Password length check failure")
 	}
 
-	if newUserValid("Admin@ufl.edu", "QWERTY") == "Your password must contain at least 1 digit!" {
+	if newUserValid("Admin1@ufl.edu", "QWERTY") == "Your password must contain at least 1 digit!" {
 		t.Log("Password digit check success")
 	} else {
 		t.Error("Password digit check failure")
 	}
 
-	if newUserValid("Admin@ufl.edu", "QWERTY1") == "Valid" {
+	if newUserValid("Admin1@ufl.edu", "QWERTY1") == "Valid" {
 		t.Log("Account creation success")
 	} else {
 		t.Error("Account creation failure")
