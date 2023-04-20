@@ -35,14 +35,10 @@ export class LoginComponent {
   }
 
   goToHomePage() {
-    // Navigate to the home page
     this.router.navigate(['/home']);
   }
 
   goToRegisterPage() {
-    // Do some login logic here...
-
-    // Navigate to the home page
     this.router.navigate(['/registration']);
   }
 
