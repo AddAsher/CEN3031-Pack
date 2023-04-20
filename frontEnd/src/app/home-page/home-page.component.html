@@ -21,9 +21,13 @@
         <div class="searchBar">
             <form>
                 <label for="searchBar"><b>Search for a club here:</b></label>
-                <input type="text" id="searchBar" [(ngModel)]="searchTerm">
+                <input type="text" id="searchBar" name="searchBar" [(ngModel)]="searchBar"><br><br>
                 <input type="button" (click)="performSearch()" value="Search">
             </form>
+        </div>
+
+        <div class="search-actions">
+
         </div>
         <!-- <app-slideshow></app-slideshow> -->
         <!-- <div class="club-list-container">

@@ -4,6 +4,7 @@ import { ClubListComponent } from '../club-list/club-list.component';
 import { AuthService, User, NullableClub, Club } from '../auth.service';
 import { Router } from '@angular/router';
 import { SharedService } from '../shared.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home-page',
@@ -13,7 +14,7 @@ import { SharedService } from '../shared.service';
 export class HomePageComponent implements OnInit {
 
   //variables to be used to construct a search bar
-  searchTerm: string;
+  searchBar: string = "";
   welcomeMessage: string;
   currUser: string;
   switch: boolean;
@@ -23,7 +24,6 @@ export class HomePageComponent implements OnInit {
 
 
   constructor(private authService: AuthService, private router: Router, private sharedService: SharedService) {
-    this.searchTerm = "";
     this.welcomeMessage = "Find the club that's right for you!";
     this.currUser = "";
     this.clubs = new Map<string, Club>();
@@ -51,8 +51,8 @@ export class HomePageComponent implements OnInit {
     // }
     // alert('Club not yet in database');
     this.getClubs();
-    console.log(this.searchTerm)
-    if (this.clubs.has(this.searchTerm)) {
+    console.log(this.searchBar)
+    if (this.clubs.has(this.searchBar)) {
       alert('Search term found');
       this.switch = true;
     }
