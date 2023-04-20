@@ -7,7 +7,4 @@ Concept: There are a pleothera of clubs across UF, students could struggle to ke
 
 ## Requirements for running and using Pack
 
-
-## Instructions for running front-end
-
-To run the front end of our project, ensure you are within the project directory, and cd into the frontEnd folder within the project. Finally, from within the terminal run the command ng serve --open to open up the Pack program.
+To run Pack, ensure you are within the project directory, and cd into the frontEnd folder within the project. Finally, from within the terminal run the command ng serve --open to open up the Pack program.
