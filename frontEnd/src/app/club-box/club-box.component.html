@@ -13,10 +13,9 @@
         <app-slideshow></app-slideshow>
     </div>
     <div class=right>
-        <a href={{club[1].hyprlink}}><strong>club{{0}}</strong></a>
         <p>Description: {{ club[1].description }}</p>
         <p>Email: {{club[1].contact}}</p>
         <p>Leader: {{club[1].leader}}</p>
-        <p>Hyperlink: {{club[1].hyperlink}}</p>
+        <p>Hyperlink: <a href="{{club[1].hyperlink}}">{{club[1].hyperlink}}</a></p>
     </div>
 </div>
