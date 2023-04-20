@@ -14,7 +14,6 @@ export class HomePageComponent implements OnInit {
 
   //variables to be used to construct a search bar
   searchTerm: string;
-  searchResults: any[];
   welcomeMessage: string;
   currUser: string;
   switch: boolean;
@@ -25,10 +24,9 @@ export class HomePageComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private sharedService: SharedService) {
     this.searchTerm = "";
-    this.searchResults = [];
     this.welcomeMessage = "Find the club that's right for you!";
     this.currUser = "";
-    this.clubs = new Map<string, Club>();;
+    this.clubs = new Map<string, Club>();
     this.switch = false;
   }
 
@@ -43,17 +41,20 @@ export class HomePageComponent implements OnInit {
     //2. search that array for the name if it is present
     //3. if found go from there
     //if not create a popup saying 'Club not yet in database'
-    this.searchTerm = this.searchTerm.toLowerCase();
-    for (let [key, value] of this.clubs) {
-      if (this.searchTerm === key.toLowerCase()) {
-        alert('Search term found');
-        this.setSelectedKey(key);
-        this.switch = true;
-      }
+    // this.searchTerm = this.searchTerm.toLowerCase();
+    // for (let [key, value] of this.clubs) {
+    //   if (this.searchTerm === key.toLowerCase()) {
+    //     alert('Search term found');
+    //     this.setSelectedKey(key);
+    //     this.switch = true;
+    //   }
+    // }
+    // alert('Club not yet in database');
+    this.getClubs();
+    if(this.clubs.has(this.searchTerm)){
+      alert('Search term found');
     }
-    alert('Club not yet in database');
   }
-
   setSelectedKey(key: string) {
     const value = this.clubs.get(key);
     if (value !== undefined) {
@@ -67,8 +68,6 @@ export class HomePageComponent implements OnInit {
     alert("Thank you for using our website. \nHave a great day!");
     this.router.navigate(['']);
   }
-
-
 
   getUsername() {
     this.authService.getUsername().subscribe(
