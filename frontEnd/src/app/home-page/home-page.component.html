@@ -6,15 +6,15 @@
         </div>
         <div class="right-content">
             {{currUser}}
-            <button type="button" (click)="Logout()" class="btn-primary">Log out</button>
+            <button type="button" (click)="Logout()" class="btn-primary" id="Log out">Log out</button>
         </div>
     </div>
     <div class="homepageBar">
         <div class="left-content">
         </div>
         <div class="right-content">
-            <button type="button" (click)="goToAddPage()"class="btn-primary">Add Club</button>
-            <button type="button" (click)="goToHomePage()"class="btn-primary">Home</button>
+            <button type="button" (click)="goToAddPage()"class="btn-primary" id="Add Club">Add Club</button>
+            <button type="button" (click)="goToHomePage()"class="btn-primary"id="Home">Home</button>
         </div>
     </div>
 </header>
@@ -25,7 +25,7 @@
         <input type="text" id="searchBar" name="searchBar" [(ngModel)]="searchBar"><br><br>
     </div>
     <div class="form-actions">
-        <button type="button" class="btn-primary" (click)="performSearch()">Search</button>
+        <button type="button" class="btn-primary" (click)="performSearch()" id="Search">Search</button>
     </div>
 </div>
 <body>
