@@ -20,7 +20,7 @@ import { AddClubComponent } from './add-club/add-club/add-club.component';
     HomePageComponent,
     RegistrationComponent,
     SlideshowComponent,
-    ClubListComponent
+    ClubListComponent,
     AddClubComponent
   ],
   imports: [

@@ -8,6 +8,10 @@ import { Component, Input } from '@angular/core';
 export class SlideshowComponent {
   @Input() clubName: string;
 
+  constructor() {
+    this.clubName = ''; // or any default value you choose
+  }
+
   showNavigation = false;
   images = [
     'assets/GoGators.jpg',

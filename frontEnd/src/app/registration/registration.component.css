@@ -1,57 +1,102 @@
-.registrationBar{
-    font-size: 12px;
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    
+    background-image: url('./registration_background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  
+  .registrationBar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    background-color: green;
-    color: white; 
-}
-
-.registration-container {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    opacity: 0.8;
-}
-
-/* Style for registration form */
-form {
-    max-width: 500px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    background-color: #f2f2f2;
-    font-family: Arial, Helvetica, sans-serif;
-}
+    background-color: #0021A5;
+    color: #FFF;
+  }
   
-/* Style for the input fields */
-input[type=text], input[type=password] {
+  .logo {
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  .title {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .registration-container {
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-}
-
-/* Style for the submit button */
-input[type=button] {
-    background-color: #1976d2;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #F6F6F6;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .form-title {
+    font-size: 24px;
+    margin-top: 0;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0021A5;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 2px solid #CCC;
+    border-radius: 5px;
+    font-size: 18px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    padding: 10px 20px;
+    font-size: 18px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
-}
-
-/* Change the color of the button on hover */
-input[type=button]:hover {
-    background-color: #3399CC;
-}
+    color: #FFF;
+  }
+  
+  .btn-primary {
+    background-color: #0021A5;
+  }
+  
+  .btn-secondary {
+    background-color: #FF7F00;
+  }
+  
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    opacity: 0.8;
+  }
+  
