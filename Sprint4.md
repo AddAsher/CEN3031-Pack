@@ -75,6 +75,8 @@ Receives a club name, descripition, leader, and contact information, and returns
 clubAdd(w http.ResponseWriter, r \*http.request) - Ensures that all passed in information is provided and checks for duplicates in the map. If these conditions are met, it adds the club and returns the map.
 
 ## Retrieving current username from backend
+## Endpoint URL
+/home/getUsername
 ### Method
 GET
 ### Request/Response Parameters
