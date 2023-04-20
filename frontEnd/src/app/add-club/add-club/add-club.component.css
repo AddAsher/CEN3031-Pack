@@ -60,15 +60,13 @@ justify-content: space-between;
 }
 
 
-.searchBar{
+.addBar{
 width: 100%;
 max-width: 600px;
 padding: 20px;
 background-color: #F6F6F6;
 position: absolute;
-top: 20%;
-left: 50%;
-transform: translate(-50%, -50%);
+margin: 0 auto
 }
 
 input[type="text"]{

@@ -19,21 +19,16 @@
     </div>
 </header>
 
-<body>
-    <div class="searchBar">
-        <div class="form-group">
-            <label for="searchBar"><b>Search for a club here:</b></label>
-            <input type="text" id="searchBar" name="searchBar" [(ngModel)]="searchBar"><br><br>
-        </div>
-        <div class="form-actions">
-            <button type="button" class="btn-primary" (click)="performSearch()">Search</button>
-        </div>
+<div class="searchBar">
+    <div class="form-group">
+        <label for="searchBar"><b>Search for a club here:</b></label>
+        <input type="text" id="searchBar" name="searchBar" [(ngModel)]="searchBar"><br><br>
     </div>
-
-    <!-- <app-slideshow></app-slideshow> -->
-    <!-- <div class="club-list-container">
-            <app-club-list hidden (sender) ="receiver($event)"></app-club-list>
-        </div> -->
+    <div class="form-actions">
+        <button type="button" class="btn-primary" (click)="performSearch()">Search</button>
+    </div>
+</div>
+<body>
     <div *ngIf="switch">
         <app-club-box></app-club-box>
     </div>
