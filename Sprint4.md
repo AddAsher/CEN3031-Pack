@@ -19,7 +19,7 @@
 * Checks to see if hyperlink is a valid URL
 
 # New Cypress Tests
-
+* Cypress test that runs through entire website
 
 
 
