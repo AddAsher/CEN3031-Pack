@@ -2,7 +2,7 @@
 
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { NullableClub } from './auth.service';
+import { NullableClub, Club } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class SharedService {
     this.sharedMap.next(map);
   }
 
-  getSharedMap(){
+  getSharedMap() {
     return this.sharedMap.asObservable();
   }
 
