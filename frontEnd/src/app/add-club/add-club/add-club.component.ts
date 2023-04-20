@@ -10,11 +10,8 @@ export class AddClubComponent {
 
   constructor(private router: Router){}
 
-  BackHome() {
+  goToHomePage() {
     this.router.navigate(['/home']);
-  }
-  Logout() {
-    this.router.navigate(['']);
   }
   SubmitInfo() {
     throw new Error('Method not implemented.');

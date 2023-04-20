@@ -1,105 +1,33 @@
-<!--Requires text boxes for the following aspects:
-    1. name
-    2. description
-    3. Contact info if applicable
-    4. Hyperlink to club website if applicable-->
-<!--Buttons for Back to Home, Logout, and submit info-->
-<div class=addBox>
-    <div class = name>
-        <p>Fill in the criteria below</p>
+<header>
+    <div class="homepageBar">
+        <div class="left-content">
+            <img src="assets/box_logo.jpg" alt="PACK logo" class="logo">
+            <h1 class="title">Fill in the criteria below</h1>
+        </div>
+        <div class="right-content">
+            <button type="button" (click)="goToHomePage()"class="btn-primary">Home</button>
+        </div>
     </div>
-    <div class=ClubName>
-        <label for="input1">Enter the name of your club:</label>
-        <input type="text" id="input1" name="input1">
+</header>
+
+<body>
+    <div class="searchBar">
+        <div class="form-group">
+                <label for="input1"><b>Enter the name of your club:</b></label>
+                <input type="text" id="input1" name="input1">
+
+                <label for="input2"><b>Enter a description of your club:</b></label>
+                <input type="text" id="input2" name="input2">
+
+                <label for="input3"><b>Enter an email for contact:</b></label>
+                <input type="text" id="input3" name="input3">
+                
+                <label for="input4"><b>Leave a link to your club's socials page:</b></label>
+                <input type="text" id="input4" name="input4">
+        </div>
+        <div class="form-actions">
+            <button type="button" (click)="SubmitInfo()" class="btn-primary">Submit</button>
+        </div>
     </div>
-    <div class=ClubDescription>
-        <label for="input2">Enter a description of your club:</label>
-        <input type="text" id="input2" name="input2">
-    </div>
-    <div class=ContactInfo>
-        <label for="input3">Enter an email for contact:</label>
-        <input type="text" id="input3" name="input3">
-    </div>
-    <div class=Hyperlink>
-        <label for="input4">Leave a link to your club's socials page:</label>
-        <input type="text" id="input4" name="input4">
-    </div>
-    <div class = Submit>
-        <input type="button" (click) = "SubmitInfo()" value="Submit">
-    </div>
-</div>
-<style>
-    .addBox {
-        border-style: double;
-        background: linear-gradient(45deg, orange, blue);
-        border-radius: 30px;
-        height: 500px;
-        font-size:20;
-        font-family:fantasy;
-        position:absolute;
-        top: 50;
-    }
-    .name{
-        text-align:center;
-        position:relative;
-        top:50;
-    }
-    .ClubName label {
-        position: relative;
-        right: -125;
-        top: 75;
-    }
-
-    .ClubName input[type=text] {
-        position: relative;
-        right: -125;
-        top: 75;
-    }
-
-    .ClubDescription label {
-        position: relative;
-        right: -125;
-        top: 75;
-    }
-
-    .ClubDescription input[type=text] {
-        position: relative;
-        right: 135;
-        top: 115;
-        height:50;
-        width:400;
-    }
-
-    .ContactInfo label {
-        position: relative;
-        right: -125;
-        top: 125;
-    }
-
-    .ContactInfo input[type=text] {
-        position: relative;
-        right: -125;
-        top: 125;
-    }
-
-    .Hyperlink label {
-        position: relative;
-        right: -125;
-        top: 150;
-    }
-    .Hyperlink input[type=text] {
-        position: relative;
-        right:-125;
-        top: 150;
-    }
-    .Submit input[type=button]{
-        font-family:fantasy;
-        position: relative;
-        border-radius:20px;
-        background-color:orange;
-        top: 225;
-        right: -550;
-        width:100;
-        height:50;
-    }
-</style>
+    
+</body>
