@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-club.component.css']
 })
 export class AddClubComponent {
+
   constructor(private router: Router){}
 
   BackHome() {
@@ -14,6 +15,9 @@ export class AddClubComponent {
   }
   Logout() {
     this.router.navigate(['']);
+  }
+  SubmitInfo() {
+    throw new Error('Method not implemented.');
   }
 
 }
