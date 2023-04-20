@@ -51,8 +51,13 @@ export class HomePageComponent implements OnInit {
     // }
     // alert('Club not yet in database');
     this.getClubs();
-    if(this.clubs.has(this.searchTerm)){
+    console.log(this.searchTerm)
+    if (this.clubs.has(this.searchTerm)) {
       alert('Search term found');
+      this.switch = true;
+    }
+    else {
+      alert('Club not yet in database');
     }
   }
   setSelectedKey(key: string) {
@@ -83,14 +88,25 @@ export class HomePageComponent implements OnInit {
 
   getClubs() {
     this.authService.getClubs().subscribe(
-      (response: Map<string, Club>) => {
-        this.clubs = response;
-        console.log(response);
+      (response: any) => {
+        for (const key in response) {
+          if (response.hasOwnProperty(key)) {
+            const newData = response[key];
+            console.log(key)
+            console.log(response[key].description)
+            this.clubs.set(key, {
+              description: response[key].description,
+              leader: response[key].leader,
+              contact: response[key].contact,
+              hyperlink: response[key].hyperlink
+            } as Club);
+          }
+        }
+        console.log(this.clubs.get("fooclub")?.hyperlink)
       },
       (error) => {
         console.log(error);
       }
     );
   }
-
 }
