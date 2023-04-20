@@ -70,6 +70,13 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  goToHomePage() {
+    this.router.navigate(['/home']);
+  }
+  goToAddPage() {
+    this.router.navigate(['add-club']);
+  }
+
   getUsername() {
     this.authService.getUsername().subscribe(
       (response: any) => {
