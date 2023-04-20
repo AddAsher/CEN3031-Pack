@@ -9,8 +9,6 @@
 * Successfully implemeneted picture showcasing on the frontend through pictures specified for specific clubs.
 * Successfully implemented a logout function in the frontend
 * Added Backend testing for user's adding clubs
-* Added a like club function, which allows a user to add a club to a list of favorites
-* Added a like club button to the front end so user's are able to easily add liked clubs
 * Added more personalization through a getUsername function that showcases their name on the site.
 * Added backend tests for checking validity of a club as well as adding a club 
 
